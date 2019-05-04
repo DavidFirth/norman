@@ -136,7 +136,7 @@ When the data has changed (for whatever reason), or when you want to make fresh 
 
 Note that this will **over-write** your previous report.  So if you want to keep the previous PDF, you should re-name it first, before updating the report as described above.
 
-# 7.  Problems?
+# 8.  Problems?
 
 Ask David Firth for advice, if any of the above is unclear or does not work.
 
