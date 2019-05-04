@@ -1,0 +1,34 @@
+---
+title: ????
+author: 
+- Department of Statistics
+- \small (prepared by ????)
+date: \rm Report written `r format(Sys.time(), "%Y-%m-%d at %H:%M")`
+output:
+  pdf_document:
+    toc: yes
+header-includes: 
+- \usepackage{color}
+- \usepackage{hyperref}
+- \usepackage{txfonts}
+urlcolor: blue
+toccolor: blue
+classoption: a4paper
+---
+
+# REMARKS
+
+<!-- Write anything that needs to be noted about this report, its status, etc. -->
+
+????  None, for now.
+
+
+
+<!-- DO NOT EDIT ANYTHING BELOW THIS LINE                                      -->
+
+```{r get_working_directory, echo = FALSE}
+working_directory <- getwd()
+```
+
+```{r include-body-material, child = system.file("rmarkdown", "report_body_material.Rmd", package = "norman")}
+```

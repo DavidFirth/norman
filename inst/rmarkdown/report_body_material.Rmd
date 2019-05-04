@@ -1,0 +1,156 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+## Packages that must be installed in R, to run this:
+library(aplpack)
+library(ggplot2)
+library(knitr)
+options(width = 100)
+```
+
+# THE DATA USED IN THIS REPORT
+
+## The data folder and its contents
+
+The **full path** to the data folder used in this report is:
+```{r report_the_data_path}
+marks_folder <- paste0(working_directory, "/marks")
+norman::print_path(marks_folder)
+```
+
+The **data files contained in that folder** are: 
+```{r show_the_folder_list, results="asis"}
+filenames <- norman::print_file_listing(marks_folder)
+```
+
+```{r read_in_the_marks, include=FALSE, echo=FALSE}
+module_codes <- unlist(substr(filenames, 1, 5))
+module_marks <- vector(mode = "list", length = length(module_codes))
+for (i in seq(along = filenames)) {
+    module_marks[[module_codes[i]]] <-
+        read.csv(paste0(marks_folder, "/", 
+                        filenames[i]))[, c("sprCode", "overallMark")]
+}
+student_IDs <- sapply(module_marks, function(m) as.character(m[[1]]))
+module_marks <- sapply(module_marks, function(m) (m[[2]]))
+unique_student_IDs <- sort(unique(unlist(student_IDs)))
+marks_matrix <- matrix(NA, length(unique_student_IDs), length(module_codes))
+rownames(marks_matrix) <- unique_student_IDs
+colnames(marks_matrix) <- module_codes
+for (m in module_codes) {
+  marks_matrix[student_IDs[[m]], m] <- module_marks[[m]]
+}
+```
+
+## Basic checks on the data 
+
+```{r check_modules_expected, include=FALSE}
+checklist <- norman::check_modules_expected()
+```
+
+```{r check_module_names, include=FALSE}
+module_names <- read.csv(paste0(working_directory, "/module_names.csv"))
+row.names(module_names) <- module_names[, 1]
+module_names$ModuleCode <- NULL
+missing_module_names <- module_codes[!module_codes %in% row.names(module_names)]
+if (length(missing_module_names) == 0) missing_module_names <- "none"
+```
+
+Modules expected that were **missing from the data folder**: 
+`r paste(checklist$missing)`
+
+Modules that were **found in the data folder unexpectedly**: 
+`r paste(checklist$extras)`
+
+**Module names missing** from `module_names.csv`: `r paste(missing_module_names)`
+
+
+# SUMMARY OF ALL MODULES
+
+**Overall median mark: `r median(marks_matrix, na.rm = TRUE)`**
+
+## Seven-number summaries
+
+```{r summary_all_modules}
+summaries <- norman::raw_mark_summaries(marks_matrix)
+kable(summaries)
+```
+
+## Percentages in degree-class ranges
+
+```{r classes_all_modules}
+classes <- norman::raw_mark_classes(marks_matrix)
+kable(classes)
+```
+
+\newpage
+
+
+# MODULE EFFECTS
+
+Module effects are measured via a two-stage analysis:
+
+1. For every possible pair of modules, calculate the **median of the differences in marks** (across the students who took both modules).
+2. Find, by weighted least squares, the **vector of module effects that best fits** those median differences.
+
+This analysis is similar to Tukey's _median polish_ analysis, but is both more transparent and more robust for the present purpose.  (Blog post at https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table/ amplifies this a little.)
+
+For completeness, in case needed, the median differences from stage 1 are reported in full, in the next sub-section.
+
+**The result of this median-of-differences analysis is the following table of module effects.**  The effects are centered such that their mean is zero.  Also reported in the table is the total number of within-student differences that were available to use in this analysis, for each module.
+
+
+```{r compute-median-differences, include = FALSE}
+md <- norman::meddiff(marks_matrix)  ## used as input to fit()
+mdd <- norman::meddiff_for_display(marks_matrix)
+## the latter is used only for the full listing of differences below
+mdfit <- norman::fit(md)
+rsq <- summary(mdfit)$r.squared
+```
+
+
+## The computed module effects
+
+Easiest to hardest.  All relative to the average module.
+
+Also shown here, for each of the modules, is the total number (Count) of mark-pair comparisons that were available for that module.
+
+```{r report_the_module_effects, results="asis"}
+mdf <- norman::get_module_effects()
+```
+
+These module effects explain `r paste0(round(100 * rsq, 0), "%")` of the variation among the median differences listed below.
+
+
+## The full list of median differences
+
+These are listed here for completeness, just in case any of them needs to be looked at (in the scaling meeting, for example).
+
+For each considered module, tabulated here are all _other_ modules that were taken (by at least one student) together with the module under consideration.  For each such 'comparator' module, two numbers are shown here:
+
+1. The **median difference** between students' scores for the two modules (rounded to integer where needed).  Positive values indicate a comparator module that was found to be harder than the module under consideration; and the opposite for negative values.
+2. The **count** of students who took both modules.
+
+\small
+
+```{r list_all_median_differences}
+norman::list_all_median_differences(mdd)
+```
+
+\normalsize
+
+\newpage
+
+
+# INDIVIDUAL MODULE SUMMARIES
+
+```{r make_overall_means, include = FALSE}
+student_overall_mean <- rowMeans(marks_matrix, na.rm = TRUE)
+```
+
+```{r make-module-pages, include = FALSE}
+module_pages <- norman::make_module_pages()
+```
+
+```{r print-module-pages, results="asis"}
+cat(module_pages, collapse = "\n")
+```
