@@ -259,4 +259,7 @@ fit <- function(m) {
 }
 
 #' @export
-update <- function() devtools::install_github("DavidFirth/norman")
+upd <- function() {
+    devtools::install_github("DavidFirth/norman")
+}
+
