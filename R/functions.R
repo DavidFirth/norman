@@ -24,13 +24,21 @@ print_file_listing <- function(folder) {
 
 #' @export
 check_modules_expected <- function(){
-    modules_expected <- scan(
-        paste0(working_directory, "/", "modules_expected_here.txt"),
-        what = character())
-    extras <- module_codes[!(module_codes %in% modules_expected)]
-    if (length(extras) == 0) extras <- "none"
-    missing <- modules_expected[!(modules_expected %in% module_codes)]
-    if (length(missing) == 0) missing <- "none"
+    checkfile <- paste0(working_directory, "/", "modules_expected_here.txt")
+    checkfile_exists <- file.exists(checkfile)
+    if (checkfile_exists) {
+        modules_expected <- scan(
+            paste0(working_directory, "/", "modules_expected_here.txt"),
+            what = character())
+        extras <- module_codes[!(module_codes %in% modules_expected)]
+        if (length(extras) == 0) extras <- "none"
+        missing <- modules_expected[!(modules_expected %in% module_codes)]
+        if (length(missing) == 0) missing <- "none"
+    } else {
+        extras <- missing <-
+            "(no checking done because the file
+           \\small  `modules_expected_here.txt` \\normalsize was not provided)"
+    }
     list(extras=extras, missing=missing)
 }
 
@@ -68,14 +76,17 @@ make_module_pages <- function(keep_tmpdir = FALSE) {
   #  names(marks_df)[1] <<- "overall_mean"
     out <- NULL
     template <- scan(system.file("rmarkdown", "templates", "module-template.Rmd",
-                                 package = "wasmapack"),
+                                 package = "norman"),
                      what = character(), sep = "\n",
                      blank.lines.skip = FALSE)
     tmpdir <- file.path(working_directory, "tmp")
     dir.create(tmpdir, showWarnings = FALSE)
+    if (exists("module_names")) {
+        name_known <- row.names(module_names)
+    } else name_known <- ""
     for (i in module_codes) {
         thefile <- gsub("module-code", i, template)
-        module_name_replacement <- if (i %in% row.names(module_names)) {
+        module_name_replacement <- if (i %in% name_known) {
                                        module_names[i, ]
                                    } else "(module name not provided)"
         thefile <- gsub("module-name", module_name_replacement, thefile)

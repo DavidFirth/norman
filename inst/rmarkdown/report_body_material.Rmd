@@ -48,11 +48,13 @@ checklist <- norman::check_modules_expected()
 ```
 
 ```{r check_module_names, include=FALSE}
-module_names <- read.csv(paste0(working_directory, "/module_names.csv"))
-row.names(module_names) <- module_names[, 1]
-module_names$ModuleCode <- NULL
-missing_module_names <- module_codes[!module_codes %in% row.names(module_names)]
-if (length(missing_module_names) == 0) missing_module_names <- "none"
+if (file.exists(paste0(working_directory, "/module_names.csv"))) {
+  module_names <- read.csv(paste0(working_directory, "/module_names.csv"))
+  row.names(module_names) <- module_names[, 1]
+  module_names$ModuleCode <- NULL
+  missing_module_names <- module_codes[!module_codes %in% row.names(module_names)]
+  if (length(missing_module_names) == 0) missing_module_names <- "none"
+} else {missing_module_names <- "**ERROR**, the file \\small `module_names.csv` \\normalsize does not exist"}
 ```
 
 Modules expected that were **missing from the data folder**: 
@@ -61,7 +63,7 @@ Modules expected that were **missing from the data folder**:
 Modules that were **found in the data folder unexpectedly**: 
 `r paste(checklist$extras)`
 
-**Module names missing** from `module_names.csv`: `r paste(missing_module_names)`
+**Module names missing** from \small `module_names.csv`\normalsize: `r paste(missing_module_names)`
 
 
 # SUMMARY OF ALL MODULES

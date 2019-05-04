@@ -36,9 +36,9 @@ In Windows, setting that up seems sometimes to be problematic, I don't know why.
 
 This is the package that builds Warwick Statistics reports on exam marks. 
 
-To install **norman** for the first time: in your _R_ Console (which is one of the panes in the _RStudio window), paste the following:
+To install **norman** for the first time: in your _R_ Console (which is one of the panes in the _RStudio window), paste the following and hit <return>:
 ```
-install.packages("devtools")
+if (!("devtools" %in% installed.packages()[,"Package"])) install.packages("devtools")
 devtools::install_github("DavidFirth/norman")
 ```
 
