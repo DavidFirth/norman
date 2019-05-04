@@ -7,7 +7,7 @@ in the administration of the Department of Statistics at the University of Warwi
 It's an _R_ package, and there is a vignette that gives instructions on how to 
 install it and use it.  The vignette can either be viewed in R (once the package
 has been installed), or on the web at 
-https://github.com/DavidFirth/norman/blob/master/vignettes/Instructions.html
+http://htmlpreview.github.com?https://github.com/DavidFirth/norman/blob/master/vignettes/Instructions.html
 
 ## Why "norman"
 
