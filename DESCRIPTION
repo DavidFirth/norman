@@ -4,7 +4,7 @@ Version: 1.0.1
 Authors@R: person("David", "Firth", email = "d.firth@warwick.ac.uk", role = c("aut", "cre"))
 Description: This package provides a report template (.Rmd), and associated R functions that are called when that .Rmd file is knitted.
 Depends: R (>= 3.4.4), knitr, rmarkdown, aplpack, devtools, ggplot2 
-License: GPL2 or later.  For use only by staff in Warwick Statistics.  (Not really useful to others!)
+License: GPLv3 or later.  For use only by staff in Warwick Statistics.  (Not really useful to others!)
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
