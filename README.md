@@ -9,7 +9,7 @@ install it and use it.  The vignette can either be viewed in R (once the package
 has been installed), or on the web at 
 https://davidfirth.github.io/norman/Instructions.html
 
-## Why "norman"
+## Why "norman"?
 
 Because I needed a memorable name for this package.  And because _nobody_ was ever 
 better at marking: 
