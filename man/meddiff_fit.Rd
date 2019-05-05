@@ -15,3 +15,18 @@ A \code{lm} model object
 \description{
 Extract module effects from the median differences
 }
+\examples{
+#
+# Toy example from
+# https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table
+#
+x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
+  .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
+  module = c("A", "B", "C", "D", "E")), .Names = c("student", "module")))
+print(x)
+md <- meddiff(x)
+the_fit <- meddiff_fit(md)$coef
+names(the_fit) <- gsub("^X", "", names(the_fit))
+the_fit
+
+}

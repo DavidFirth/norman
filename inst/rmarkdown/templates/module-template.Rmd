@@ -1,14 +1,13 @@
 ## module-code module-name
 
 **Module effect** (as described above): 
-**`r norman::print_module_effect("module-code")` marks**
+**`r norman::print_module_effect("module-code", mdf)` marks**
 
 \bigskip
 
 ```{r stemplot-module-code}
-stemplot <- aplpack::stem.leaf(module_marks$module-code, unit = 1, m = 1, Min = 0, Max = 100,
-                      trim.outliers = FALSE, na.rm = TRUE, printresult = FALSE)
-cat(stemplot$display, sep = "\n")
+stemplot <- norman::stemleaf("module-code", module_marks)
+cat(stemplot, sep = "\n")
 ```
 
 \bigskip\bigskip
@@ -27,5 +26,5 @@ knitr::kable(classes["module-code",,drop = FALSE])
 \bigskip
 
 ```{r scatter-module-code, out.width = '100%', fig.align='center'}
-norman::scatter("module-code")
+norman::scatter("module-code", marks_matrix, student_overall_mean)
 ```

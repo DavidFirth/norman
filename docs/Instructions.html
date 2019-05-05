@@ -391,15 +391,28 @@ $(document).ready(function () {
 <p>It’s probably best to test your setup on a relatively <em>simple</em> R Markdown document, such as the one you get when selecting <strong>File –&gt; New file –&gt; R markdown</strong> in Rstudio’s menu. With such a file open in the RStudio editor, try doing <strong>Knit to PDF</strong> (from the “Knit” menu).</p>
 <p>In Windows, setting that up seems sometimes to be problematic, I don’t know why. But there are plenty of tips available online (e.g., <a href="https://rickpackblog.wordpress.com/2017/10/04/miktex-install-for-r-windows-pdf-output-r-markdown/" class="uri">https://rickpackblog.wordpress.com/2017/10/04/miktex-install-for-r-windows-pdf-output-r-markdown/</a> ). Good luck with it! Thankfully you’ll need only do it once — until you get a new computer, of course.</p>
 </div>
-<div id="install-the-norman-package-to-your-r-setup" class="section level1">
-<h1>0.5. Install the <strong>norman</strong> package to your <em>R</em> setup</h1>
-<p>This is the package that builds Warwick Statistics reports on exam marks.</p>
+<div id="add-the-norman-and-rmarkdown-packages-to-your-r-installation" class="section level1">
+<h1>0.5. Add the <strong>norman</strong> and <strong>rmarkdown</strong> packages to your <em>R</em> installation</h1>
+<div id="installing-norman" class="section level2">
+<h2>0.5.1 Installing <strong>norman</strong></h2>
+<p>The package <strong>norman</strong> builds Warwick Statistics reports on exam marks.</p>
 <p>To install <strong>norman</strong> for the first time: in your <em>R</em> Console (which is one of the panes in the <em>RStudio</em> window), paste the following and hit return:</p>
 <pre><code>if (!(&quot;devtools&quot; %in% installed.packages()[,&quot;Package&quot;])) install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;DavidFirth/norman&quot;, build_opts = &quot;&quot;)</code></pre>
-<p>To update <strong>norman</strong> to the <em>latest version</em> of the package: in your <em>R</em> console, give the following command:</p>
+<p>The installation of <strong>norman</strong> should also trigger the installation of 3 other packages if you do not have them already. They are <strong>aplpack</strong>, <strong>knitr</strong> and <strong>ggplot2</strong>.</p>
+</div>
+<div id="installing-rmarkdown" class="section level2">
+<h2>0.5.2 Installing <strong>rmarkdown</strong></h2>
+<p>Again in your <em>R</em> console:</p>
+<pre><code>install.packages(&quot;rmarkdown&quot;)</code></pre>
+</div>
+<div id="updating-norman" class="section level2">
+<h2>0.5.9 <em>Updating</em> <strong>norman</strong></h2>
+<p>(This will be needed whenever the <strong>norman</strong> package itself has been updated to a new version — for example, after <strong>norman</strong> has been improved to fix bugs or to add new features to the reports it makes. If you have only just installed <strong>norman</strong> (as detailed above), you should skip this section for now but keep it in mind for later.)</p>
+<p>To update <strong>norman</strong> to the <em>latest version</em> of the package: in your <em>R</em> console, issue the following command:</p>
 <pre><code>devtools::install_github(&quot;DavidFirth/norman&quot;, build_opts = &quot;&quot;)</code></pre>
-<p>If you see a warning message after running <code>install_github</code> it can be safely ignored.</p>
+<p>If you see a <em>warning</em> message after doing that, it can be safely ignored.</p>
+</div>
 </div>
 <div id="make-a-separate-folder-for-each-report-that-you-will-prepare-if-not-made-already" class="section level1">
 <h1>1. Make a separate folder for each report that you will prepare (if not made already)</h1>

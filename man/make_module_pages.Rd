@@ -4,9 +4,16 @@
 \alias{make_module_pages}
 \title{Make a report page for each module}
 \usage{
-make_module_pages(keep_tmpdir = FALSE)
+make_module_pages(working_directory, module_codes, module_names,
+  keep_tmpdir = FALSE)
 }
 \arguments{
+\item{working_directory}{Character; the full path to the folder for the report}
+
+\item{module_codes}{Character; the vector of module codes used in the report}
+
+\item{module_names}{Character, or NULL if no "module_names.csv" file was provided}
+
 \item{keep_tmpdir}{Logical; whether to keep the working "tmp" directory}
 }
 \value{

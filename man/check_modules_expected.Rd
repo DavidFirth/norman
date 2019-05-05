@@ -4,7 +4,12 @@
 \alias{check_modules_expected}
 \title{Check the marks folder contents against file "modules_expected_here.txt"}
 \usage{
-check_modules_expected()
+check_modules_expected(working_directory, module_codes)
+}
+\arguments{
+\item{working_directory}{Character; the full path to the folder for this report}
+
+\item{module_codes}{Character; the vector of module codes used in the report}
 }
 \value{
 A list with two character components, named

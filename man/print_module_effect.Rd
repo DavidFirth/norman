@@ -4,10 +4,12 @@
 \alias{print_module_effect}
 \title{Get the module effect for a given module code}
 \usage{
-print_module_effect(module_code)
+print_module_effect(module_code, mdf)
 }
 \arguments{
 \item{module_code}{Character; the length-5 module code}
+
+\item{mdf}{Object of class \code{lm}, the module fitted to median differences}
 }
 \value{
 Character; the module effect, rounded to 1 decimal place.

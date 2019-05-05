@@ -20,6 +20,9 @@ print_path <- function(folder) {
 #' @param folder Character, the relative path to a folder from the
 #' current working directory
 #' @return Character; a vector of file names
+#'
+#' @importFrom knitr kable
+#'
 #' @export
 print_file_listing <- function(folder) {
     oldpath <- getwd()
@@ -34,11 +37,15 @@ print_file_listing <- function(folder) {
 
 #' Check the marks folder contents against file "modules_expected_here.txt"
 #'
+#' @param working_directory Character; the full path to the folder for this report
+#' @param module_codes Character; the vector of module codes used in the report
 #' @return A list with two character components, named
 #' \code{extras} and \code{missing}
 #'
+#' @importFrom knitr kable
+#'
 #' @export
-check_modules_expected <- function(){
+check_modules_expected <- function(working_directory, module_codes){
     checkfile <- paste0(working_directory, "/", "modules_expected_here.txt")
     checkfile_exists <- file.exists(checkfile)
     if (checkfile_exists) {
@@ -59,9 +66,11 @@ check_modules_expected <- function(){
 
 #' Print and return a table of module effects
 #'
+#' @param module_codes Character; the vector of module codes used in the report
+#' @param mdd List of median differences
 #' @return A 2-column data frame with columns \code{Effect} and \code{Count}
 #' @export
-get_module_effects <- function() {
+get_module_effects <- function(module_codes, mdd) {
     count <- numeric(length(mdd))
     names(count) <- names(mdd)
     for (i in names(mdd)) {
@@ -82,9 +91,10 @@ get_module_effects <- function() {
 #' Get the module effect for a given module code
 #'
 #' @param module_code Character; the length-5 module code
+#' @param mdf Object of class \code{lm}, the module fitted to median differences
 #' @return Character; the module effect, rounded to 1 decimal place.
 #' @export
-print_module_effect <- function(module_code){
+print_module_effect <- function(module_code, mdf){
     effect <- round(mdf[module_code, "Effect"], 1)
     if (effect < 0) pm <- "minus"
     if (effect > 0) pm <- "plus"
@@ -93,10 +103,14 @@ print_module_effect <- function(module_code){
 
 #' Make a report page for each module
 #'
+#' @param working_directory Character; the full path to the folder for the report
+#' @param module_codes Character; the vector of module codes used in the report
+#' @param module_names Character, or NULL if no "module_names.csv" file was provided
 #' @param keep_tmpdir Logical; whether to keep the working "tmp" directory
 #' @return Character; R Markdown text for the module pages that were made
 #' @export
-make_module_pages <- function(keep_tmpdir = FALSE) {
+make_module_pages <- function(working_directory, module_codes, module_names,
+                              keep_tmpdir = FALSE) {
   #  marks_matrix <<- cbind(rowMeans(marks_matrix, na.rm = TRUE), marks_matrix)
   #  marks_df <<- as.data.frame(marks_matrix)
   #  names(marks_df)[1] <<- "overall_mean"
@@ -107,7 +121,7 @@ make_module_pages <- function(keep_tmpdir = FALSE) {
                      blank.lines.skip = FALSE)
     tmpdir <- file.path(working_directory, "tmp")
     dir.create(tmpdir, showWarnings = FALSE)
-    if (exists("module_names")) {
+    if (!is.null(module_names)) {
         name_known <- row.names(module_names)
     } else name_known <- ""
     for (i in module_codes) {
@@ -127,12 +141,36 @@ make_module_pages <- function(keep_tmpdir = FALSE) {
 }
 
 
+#' Make a module-specific stem and leaf plot
+#'
+#' @param module_code Character; the length-5 module code
+#' @param module_marks List of module marks, one component per module
+#'
+#' @return A character vector for display
+#'
+#' @importFrom aplpack stem.leaf
+#'
+#' @export
+stemleaf  <- function(module_code, module_marks) {
+    result <- stem.leaf(module_marks[[module_code]], unit = 1, m = 1,
+                                 Min = 0, Max = 100,
+                                 trim.outliers = FALSE,
+                                 na.rm = TRUE,
+                                 printresult = FALSE)
+    return(result$display)
+}
+
 #' Make a module-specific scatterplot
 #'
 #' @param module_code Character; the length-5 module code
+#' @param marks_matrix Numeric, the matrix of marks
+#' @param student_overall_mean The row means of marks_matrix
 #' @return A \code{ggplot} object
+#'
+#' @import ggplot2
+#'
 #' @export
-scatter  <- function(module_code) {
+scatter  <- function(module_code, marks_matrix, student_overall_mean) {
     options(warn = -1)
     final_years_exams <- "ST903" %in% colnames(marks_matrix)
     if (final_years_exams) {
@@ -178,6 +216,10 @@ scatter  <- function(module_code) {
 #'
 #' @param marks_matrix The full matrix of marks for the modules
 #' @return A matrix
+#'
+#' @importFrom stats quantile
+#' @importFrom stats sd
+#'
 #' @export
 raw_mark_summaries <- function(marks_matrix){
     M <- ncol(marks_matrix)
@@ -235,6 +277,20 @@ raw_mark_classes <-  function(marks_matrix, dp = 0){
 #' @param xmat A numeric matrix
 #' @return A square numeric matrix, with size equal to the number of
 #' columns in \code{xmat}
+#'
+#' @examples
+#' #
+#' # Toy example from
+#' # https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table
+#' #
+#' x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
+#'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
+#'   module = c("A", "B", "C", "D", "E")), .Names = c("student", "module")))
+#' print(x)
+#' meddiff(x)
+#'
+#' @importFrom stats median
+#'
 #' @export
 meddiff <- function(xmat) {
     ## rows are students, columns are modules
@@ -256,6 +312,20 @@ meddiff <- function(xmat) {
 #'
 #' @param xmat A numeric matrix
 #' @return A list, with one vector component for each column of \code{xmat}
+#'
+#' @examples
+#' #
+#' # Toy example from
+#' # https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table
+#' #
+#' x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
+#'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
+#'   module = c("A", "B", "C", "D", "E")), .Names = c("student", "module")))
+#' print(x)
+#' meddiff_for_display(x)
+#'
+#' @importFrom stats median
+#'
 #' @export
 meddiff_for_display <- function(xmat) {
     ## rows are students, columns are modules
@@ -281,6 +351,19 @@ meddiff_for_display <- function(xmat) {
 #'
 #' @param mdd A list
 #' @return \code{invisible(NULL)}
+#'
+#' @examples
+#' #
+#' # Toy example from
+#' # https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table
+#' #
+#' x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
+#'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
+#'   module = c("A", "B", "C", "D", "E")), .Names = c("student", "module")))
+#' print(x)
+#' mdd <- meddiff_for_display(x)
+#' list_all_median_differences(mdd)
+#'
 #' @export
 list_all_median_differences <- function(mdd) {
     for (module in names(mdd)) {
@@ -294,8 +377,26 @@ list_all_median_differences <- function(mdd) {
 
 #' Extract module effects from the median differences
 #'
+#' @examples
+#' #
+#' # Toy example from
+#' # https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table
+#' #
+#' x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
+#'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
+#'   module = c("A", "B", "C", "D", "E")), .Names = c("student", "module")))
+#' print(x)
+#' md <- meddiff(x)
+#' the_fit <- meddiff_fit(md)$coef
+#' names(the_fit) <- gsub("^X", "", names(the_fit))
+#' the_fit
+#'
 #' @param m A numeric matrix of mdeian differences as computed by \code{meddiff}
 #' @return A \code{lm} model object
+#'
+#' @importFrom stats model.matrix
+#' @importFrom stats lm
+#'
 #' @export
 meddiff_fit <- function(m) {
     ## m needs to be fully (weakly) connected above the diagonal

@@ -32,9 +32,11 @@ Rstudio's menu.  With such a file open in the RStudio editor, try doing **Knit t
 
 In Windows, setting that up seems sometimes to be problematic, I don't know why.  But there are plenty of tips available online (e.g., https://rickpackblog.wordpress.com/2017/10/04/miktex-install-for-r-windows-pdf-output-r-markdown/ ).  Good luck with it!  Thankfully you'll need only do it once --- until you get a new computer, of course.
 
-# 0.5. Install the **norman** package to your _R_ setup
+# 0.5. Add the **norman** and **rmarkdown** packages to your _R_ installation 
 
-This is the package that builds Warwick Statistics reports on exam marks. 
+## 0.5.1 Installing **norman**
+
+The package **norman** builds Warwick Statistics reports on exam marks. 
 
 To install **norman** for the first time: in your _R_ Console (which is one of the panes in the _RStudio_ window), paste the following and hit return:
 ```
@@ -42,12 +44,32 @@ if (!("devtools" %in% installed.packages()[,"Package"])) install.packages("devto
 devtools::install_github("DavidFirth/norman", build_opts = "")
 ```
 
-To update **norman** to the _latest version_ of the package: in your _R_ console, give the following command:
+The installation of **norman** should also trigger the installation of 3 other 
+packages if you do not have them already.  They are **aplpack**, **knitr** 
+and **ggplot2**.
+
+## 0.5.2 Installing **rmarkdown**
+
+Again in your _R_ console:
+```
+install.packages("rmarkdown")
+```
+
+## 0.5.9 _Updating_ **norman**
+
+(This will be needed whenever the **norman** package itself has been 
+updated to a new version --- for example, after **norman** has been improved 
+to fix bugs or to add new features to 
+the reports it makes. 
+If you have only just installed **norman** (as detailed above), 
+you should skip this section for now but keep it in mind for later.)
+
+To update **norman** to the _latest version_ of the package: in your _R_ console, 
+issue the following command:
 ```
 devtools::install_github("DavidFirth/norman", build_opts = "")
 ```
-
-If you see a warning message after running `install_github` it can be safely ignored.
+If you see a _warning_ message after doing that, it can be safely ignored.
 
 
 # 1.  Make a separate folder for each report that you will prepare (if not made already)
