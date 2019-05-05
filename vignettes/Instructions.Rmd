@@ -39,13 +39,15 @@ This is the package that builds Warwick Statistics reports on exam marks.
 To install **norman** for the first time: in your _R_ Console (which is one of the panes in the _RStudio_ window), paste the following and hit return:
 ```
 if (!("devtools" %in% installed.packages()[,"Package"])) install.packages("devtools")
-devtools::install_github("DavidFirth/norman")
+devtools::install_github("DavidFirth/norman", build_opts = "")
 ```
 
 To update **norman** to the _latest version_ of the package: in your _R_ console, give the following command:
 ```
-devtools::install_github("DavidFirth/norman")
+devtools::install_github("DavidFirth/norman", build_opts = "")
 ```
+
+If you see a warning message after running `install_github` it can be safely ignored.
 
 
 # 1.  Make a separate folder for each report that you will prepare (if not made already)
