@@ -1,3 +1,8 @@
+#' Get the full path of a folder
+#'
+#' @param folder Character, the relative path to a folder from the
+#' current working directory
+#' @return Character, the full path to the folder.  (invisibly)
 #' @export
 print_path <- function(folder) {
     oldpath <- getwd()
@@ -10,6 +15,11 @@ print_path <- function(folder) {
     invisible(thepath)
 }
 
+#' Print and return the list of files in a folder
+#'
+#' @param folder Character, the relative path to a folder from the
+#' current working directory
+#' @return Character; a vector of file names
 #' @export
 print_file_listing <- function(folder) {
     oldpath <- getwd()
@@ -22,6 +32,11 @@ print_file_listing <- function(folder) {
     return(filenames)
 }
 
+#' Check the marks folder contents against file "modules_expected_here.txt"
+#'
+#' @return A list with two character components, named
+#' \code{extras} and \code{missing}
+#'
 #' @export
 check_modules_expected <- function(){
     checkfile <- paste0(working_directory, "/", "modules_expected_here.txt")
@@ -39,9 +54,12 @@ check_modules_expected <- function(){
             "(no checking done because the file
            \\small  `modules_expected_here.txt` \\normalsize was not provided)"
     }
-    list(extras=extras, missing=missing)
+    list(extras = extras, missing = missing)
 }
 
+#' Print and return a table of module effects
+#'
+#' @return A 2-column data frame with columns \code{Effect} and \code{Count}
 #' @export
 get_module_effects <- function() {
     count <- numeric(length(mdd))
@@ -61,6 +79,10 @@ get_module_effects <- function() {
     return(mdf)
     }
 
+#' Get the module effect for a given module code
+#'
+#' @param module_code Character; the length-5 module code
+#' @return Character; the module effect, rounded to 1 decimal place.
 #' @export
 print_module_effect <- function(module_code){
     effect <- round(mdf[module_code, "Effect"], 1)
@@ -69,6 +91,10 @@ print_module_effect <- function(module_code){
     paste(pm, sprintf("%2.1f", abs(effect)))
 }
 
+#' Make a report page for each module
+#'
+#' @param keep_tmpdir Logical; whether to keep the working "tmp" directory
+#' @return Character; R Markdown text for the module pages that were made
 #' @export
 make_module_pages <- function(keep_tmpdir = FALSE) {
   #  marks_matrix <<- cbind(rowMeans(marks_matrix, na.rm = TRUE), marks_matrix)
@@ -101,6 +127,10 @@ make_module_pages <- function(keep_tmpdir = FALSE) {
 }
 
 
+#' Make a module-specific scatterplot
+#'
+#' @param module_code Character; the length-5 module code
+#' @return A \code{ggplot} object
 #' @export
 scatter  <- function(module_code) {
     options(warn = -1)
@@ -144,6 +174,10 @@ scatter  <- function(module_code) {
     thegraph
 }
 
+#' Make a matrix of 7-number summaries for all modules
+#'
+#' @param marks_matrix The full matrix of marks for the modules
+#' @return A matrix
 #' @export
 raw_mark_summaries <- function(marks_matrix){
     M <- ncol(marks_matrix)
@@ -168,8 +202,13 @@ raw_mark_summaries <- function(marks_matrix){
     return(result)
 }
 
+#' Make a matrix of percentages in each degree class range, for all modules
+#'
+#' @param marks_matrix The full matrix of marks for the modules
+#' @param dp Numeric, the number of decimal places to round the result to
+#' @return A matrix
 #' @export
-raw_mark_classes <-  function(marks_matrix){
+raw_mark_classes <-  function(marks_matrix, dp = 0){
     M <- ncol(marks_matrix)
     result <- matrix(NA, M, 6)
     rownames(result) <- colnames(marks_matrix)
@@ -188,9 +227,14 @@ raw_mark_classes <-  function(marks_matrix){
                                   sum((col >= 60) & (col <= 69), na.rm = TRUE)}) / N
     result[, "70+"] <- 100 * apply(marks_matrix, 2, function(col) {
                                  sum((col >= 70), na.rm = TRUE)}) / N
-    return(round(result, 0))
+    return(round(result, dp))
 }
 
+#' Compute a matrix of median differences
+#'
+#' @param xmat A numeric matrix
+#' @return A square numeric matrix, with size equal to the number of
+#' columns in \code{xmat}
 #' @export
 meddiff <- function(xmat) {
     ## rows are students, columns are modules
@@ -208,6 +252,10 @@ meddiff <- function(xmat) {
     return(result)
 }
 
+#' A version of \code{meddiff} to compute median differences in a different format
+#'
+#' @param xmat A numeric matrix
+#' @return A list, with one vector component for each column of \code{xmat}
 #' @export
 meddiff_for_display <- function(xmat) {
     ## rows are students, columns are modules
@@ -229,6 +277,10 @@ meddiff_for_display <- function(xmat) {
     return(result)
 }
 
+#' List all median within-student differences between modules
+#'
+#' @param mdd A list
+#' @return \code{invisible(NULL)}
 #' @export
 list_all_median_differences <- function(mdd) {
     for (module in names(mdd)) {
@@ -240,8 +292,12 @@ list_all_median_differences <- function(mdd) {
     invisible(NULL)
 }
 
+#' Extract module effects from the median differences
+#'
+#' @param m A numeric matrix of mdeian differences as computed by \code{meddiff}
+#' @return A \code{lm} model object
 #' @export
-fit <- function(m) {
+meddiff_fit <- function(m) {
     ## m needs to be fully (weakly) connected above the diagonal
     ## -- otherwise we can't fit the linear model
     upper <- upper.tri(m)
@@ -258,8 +314,4 @@ fit <- function(m) {
     return(result)
 }
 
-#' @export
-upd <- function() {
-    devtools::install_github("DavidFirth/norman")
-}
 

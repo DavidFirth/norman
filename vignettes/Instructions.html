@@ -323,11 +323,11 @@ $(document).ready(function () {
 <div id="install-the-norman-package-to-your-r-setup" class="section level1">
 <h1>0.5. Install the <strong>norman</strong> package to your <em>R</em> setup</h1>
 <p>This is the package that builds Warwick Statistics reports on exam marks.</p>
-<p>To install <strong>norman</strong> for the first time: in your <em>R</em> Console (which is one of the panes in the _RStudio window), paste the following and hit <return>:</p>
+<p>To install <strong>norman</strong> for the first time: in your <em>R</em> Console (which is one of the panes in the <em>RStudio</em> window), paste the following and hit return:</p>
 <pre><code>if (!(&quot;devtools&quot; %in% installed.packages()[,&quot;Package&quot;])) install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;DavidFirth/norman&quot;)</code></pre>
 <p>To update <strong>norman</strong> to the <em>latest version</em> of the package: in your <em>R</em> console, give the following command:</p>
-<pre><code>norman::update()</code></pre>
+<pre><code>devtools::install_github(&quot;DavidFirth/norman&quot;)</code></pre>
 </div>
 <div id="make-a-separate-folder-for-each-report-that-you-will-prepare-if-not-made-already" class="section level1">
 <h1>1. Make a separate folder for each report that you will prepare (if not made already)</h1>

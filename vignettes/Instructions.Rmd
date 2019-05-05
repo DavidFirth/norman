@@ -36,7 +36,7 @@ In Windows, setting that up seems sometimes to be problematic, I don't know why.
 
 This is the package that builds Warwick Statistics reports on exam marks. 
 
-To install **norman** for the first time: in your _R_ Console (which is one of the panes in the _RStudio window), paste the following and hit <return>:
+To install **norman** for the first time: in your _R_ Console (which is one of the panes in the _RStudio_ window), paste the following and hit return:
 ```
 if (!("devtools" %in% installed.packages()[,"Package"])) install.packages("devtools")
 devtools::install_github("DavidFirth/norman")
@@ -44,7 +44,7 @@ devtools::install_github("DavidFirth/norman")
 
 To update **norman** to the _latest version_ of the package: in your _R_ console, give the following command:
 ```
-norman::update()
+devtools::install_github("DavidFirth/norman")
 ```
 
 
@@ -132,7 +132,8 @@ If all goes well, this will make your report as a PDF document in your current w
 
 # 7.  Re-making a report after some of the data has changed, or after you have made edits
 
-When the data has changed (for whatever reason), or when you want to make fresh edits to the title, author or remarks fields of the report, you can update your report just by opening the `.Rmd` file (in _RStudio_).  Make any necessary edits and then click **Knit** to save the report and re-make the PDF document.
+When the data has changed (for whatever reason), or when you want to make fresh edits to the title, author or remarks fields of the report, you can update your report just by opening the `.Rmd` file (in _RStudio_).  Make any necessary edits and then click
+**Knit** to save the report and re-make the PDF document.
 
 Note that this will **over-write** your previous report.  So if you want to keep the previous PDF, you should re-name it first, before updating the report as described above.
 

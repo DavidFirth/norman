@@ -102,10 +102,10 @@ For completeness, in case needed, the median differences from stage 1 are report
 
 
 ```{r compute-median-differences, include = FALSE}
-md <- norman::meddiff(marks_matrix)  ## used as input to fit()
+md <- norman::meddiff(marks_matrix)  ## used as input to meddiff_fit()
 mdd <- norman::meddiff_for_display(marks_matrix)
 ## the latter is used only for the full listing of differences below
-mdfit <- norman::fit(md)
+mdfit <- norman::meddiff_fit(md)
 rsq <- summary(mdfit)$r.squared
 ```
 
