@@ -24,15 +24,17 @@ I recommend reading the whole document before doing anything --- to get the idea
 
 # 0. Setup your _RStudio_ and _LaTeX_ (if not done already)
 
-The instructions below (from step 1 onwards) will all assume that you have a functioning installation of _RStudio_, capable of "knitting" an _R Markdown_ (`.Rmd`) file to a PDF output document.  
+The instructions below (from step 1 onwards) will all assume that you have a functioning installation of _R_, _RStudio_ and _LaTeX_ --- specifically, a setup that is capable of "knitting" an _R Markdown_ (`.Rmd`) file to a PDF output document. (A part of that setup with be the installation of the _R_ add-on package **rmarkdown**.)
+
+These installations are all fairly standard. Our IT support staff should be able to handle it without problem.
 
 It's probably best to test your setup on a relatively _simple_
 R Markdown document, such as the one you get when selecting **File --> New file --> R markdown** in
-Rstudio's menu.  With such a file open in the RStudio editor, try doing **Knit to PDF** (from the "Knit" menu).
+Rstudio's menu.  With such a file open in the _RStudio_ editor, try doing **Knit to PDF** (from the "Knit" menu).
 
-In Windows, setting that up seems sometimes to be problematic, I don't know why.  But there are plenty of tips available online (e.g., https://rickpackblog.wordpress.com/2017/10/04/miktex-install-for-r-windows-pdf-output-r-markdown/ ).  Good luck with it!  Thankfully you'll need only do it once --- until you get a new computer, of course.
+In Windows, setting up these things seems sometimes to be problematic, I don't know why.  But there are plenty of tips available online (e.g., https://rickpackblog.wordpress.com/2017/10/04/miktex-install-for-r-windows-pdf-output-r-markdown/ ).  Good luck with it!  Thankfully you'll need only do it once --- until you get a new computer, of course.
 
-# 0.5. Add the **norman** and **rmarkdown** packages to your _R_ installation 
+# 0.5. Add the **norman** package to your _R_ installation 
 
 ## 0.5.1 Installing **norman**
 
@@ -44,11 +46,11 @@ if (!("devtools" %in% installed.packages()[,"Package"])) install.packages("devto
 devtools::install_github("DavidFirth/norman", build_opts = "")
 ```
 
-The installation of **norman** should also trigger the installation of 3 other 
-packages if you do not have them already.  They are **aplpack**, **knitr** 
+The installation of **norman** should also trigger the installation of 2 other 
+packages if you do not have them already.  They are **aplpack** 
 and **ggplot2**.
 
-## 0.5.2 Installing **rmarkdown**
+## 0.5.2 Installing **rmarkdown** (if you have not done it already in step 0)
 
 Again in your _R_ console:
 ```
@@ -57,19 +59,20 @@ install.packages("rmarkdown")
 
 ## 0.5.9 _Updating_ **norman**
 
-(This will be needed whenever the **norman** package itself has been 
+This will be needed only later, whenever the **norman** package itself has been 
 updated to a new version --- for example, after **norman** has been improved 
 to fix bugs or to add new features to 
 the reports it makes. 
 If you have only just installed **norman** (as detailed above), 
-you should skip this section for now but keep it in mind for later.)
+you should _skip this section for now but keep it in mind for when needed._
 
-To update **norman** to the _latest version_ of the package: in your _R_ console, 
+Whenever you _do_ find the need to update **norman**, 
+in your _R_ console just
 issue the following command:
 ```
 devtools::install_github("DavidFirth/norman", build_opts = "")
 ```
-If you see a _warning_ message after doing that, it can be safely ignored.
+(If you get a _warning_ message after doing that, it can be safely ignored.)
 
 
 # 1.  Make a separate folder for each report that you will prepare (if not made already)
