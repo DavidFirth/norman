@@ -133,7 +133,7 @@ This file is used only for _checking_ purposes, to provide a warning if either
 
 # 4.  Start up RStudio and make a new RStudio project (if not made already)
 
-From the **File** menu in _RStudio_, pick **New Project** and then **Existing Directory**.  Then browse to your current working directory and click **Create Project**.
+From the **File** menu in _RStudio_, pick **New Project** and then **Existing Directory**.  Then browse to your current working folder and click **Create Project**.
 
 # 5.  Make a new R Markdown document for your current report
 
