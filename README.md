@@ -1,4 +1,7 @@
-# norman
+# norman 
+
+[![Build Status](https://travis-ci.org/DavidFirth/norman.svg?branch=master)](https://travis-ci.org/DavidFirth/norman)
+
 Special-purpose software for Warwick Statistics internal reports on module marks
 
 This is open source software, but unlikely to be of interest to anyone not involved 
