@@ -11,4 +11,10 @@ notifications:
   email:
     on_success: change
     on_failure: change
+
+addons:
+  apt:
+    packages:
+    - tcl8.5-dev
+    - tk8.5-dev
     
