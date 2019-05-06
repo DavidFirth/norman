@@ -1,3 +1,4 @@
+https://travis-ci.org/DavidFirth/norman.svg?branch=master
 # norman
 Special-purpose software for Warwick Statistics internal reports on module marks
 
