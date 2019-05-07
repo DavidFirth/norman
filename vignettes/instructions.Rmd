@@ -1,7 +1,6 @@
 ---
 title: "Making a Report on a Set of Module Marks"
 author: "David Firth"
-date: "`r Sys.Date()`"
 output: html_document
 vignette: >
   %\VignetteIndexEntry{Making a Report on a Set of Module Marks}
