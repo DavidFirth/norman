@@ -41,8 +41,8 @@ The package **norman** builds Warwick Statistics reports on exam marks.
 
 To install **norman** for the first time: in your _R_ Console (which is one of the panes in the _RStudio_ window), paste the following and hit return:
 ```
-if (!("devtools" %in% installed.packages()[,"Package"])) install.packages("devtools")
-devtools::install_github("DavidFirth/norman", build_opts = "")
+if (!("remotes" %in% installed.packages()[,"Package"])) install.packages("remotes")
+remotes::install_github("DavidFirth/norman", build_opts = "")
 ```
 
 The installation of **norman** should also trigger the installation of 2 other 
@@ -69,7 +69,7 @@ Whenever you _do_ find the need to update **norman**,
 in your _R_ console just
 issue the following command:
 ```
-devtools::install_github("DavidFirth/norman", build_opts = "")
+remotes::install_github("DavidFirth/norman", build_opts = "")
 ```
 (If you get a _warning_ message after doing that, it can be safely ignored.)
 
