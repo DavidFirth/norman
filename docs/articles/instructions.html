@@ -104,8 +104,8 @@
 </h2>
 <p>The package <strong>norman</strong> builds Warwick Statistics reports on exam marks.</p>
 <p>To install <strong>norman</strong> for the first time: in your <em>R</em> Console (which is one of the panes in the <em>RStudio</em> window), paste the following and hit return:</p>
-<pre><code>if (!("devtools" %in% installed.packages()[,"Package"])) install.packages("devtools")
-devtools::install_github("DavidFirth/norman", build_opts = "")</code></pre>
+<pre><code>if (!("remotes" %in% installed.packages()[,"Package"])) install.packages("remotes")
+remotes::install_github("DavidFirth/norman", build_opts = "")</code></pre>
 <p>The installation of <strong>norman</strong> should also trigger the installation of 2 other packages if you do not have them already. They are <strong>aplpack</strong> and <strong>ggplot2</strong>.</p>
 </div>
 <div id="installing-rmarkdown-if-you-have-not-done-it-already-in-step-0" class="section level2">
@@ -120,7 +120,7 @@ devtools::install_github("DavidFirth/norman", build_opts = "")</code></pre>
 </h2>
 <p>This will be needed only later, whenever the <strong>norman</strong> package itself has been updated to a new version — for example, after <strong>norman</strong> has been improved to fix bugs or to add new features to the reports it makes. If you have only just installed <strong>norman</strong> (as detailed above), you should <em>skip this section for now but keep it in mind for when needed.</em></p>
 <p>Whenever you <em>do</em> find the need to update <strong>norman</strong>, in your <em>R</em> console just issue the following command:</p>
-<pre><code><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">devtools::install_github("DavidFirth/norman", build_opts = "")</a></code></pre>
+<pre><code><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">remotes::install_github("DavidFirth/norman", build_opts = "")</a></code></pre>
 <p>(If you get a <em>warning</em> message after doing that, it can be safely ignored.)</p>
 </div>
 </div>

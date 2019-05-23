@@ -3,3 +3,5 @@
 ^\.git.*$
 ^\.Rhistory
 docs
+^doc$
+^Meta$
