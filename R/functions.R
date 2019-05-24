@@ -9,7 +9,8 @@ print_path <- function(folder) {
     setwd(folder)
     thepath <- unlist(strsplit(getwd(), split = "/"))
     setwd(oldpath)
-    if (thepath[1] == "") path <- thepath[-1]
+    path <- thepath
+    if (path[1] == "") path <- path[-1]
     path[1] <- paste0("    ", path[1])
     cat(path, sep = "\n    -> ")
     invisible(thepath)

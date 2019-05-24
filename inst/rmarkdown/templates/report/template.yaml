@@ -1,2 +1,3 @@
 name: Warwick Stats report on module marks
 description: This R Markdown template will make a report on a set of module marks
+create_dir: false
