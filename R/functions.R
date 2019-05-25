@@ -429,6 +429,8 @@ meddiff_fit <- function(m) {
 #'
 #' @importFrom remotes install_github
 #'
+#' @export
+#'
 update <- function(build_opts = "--no-build-vignettes", ...) {
     install_github("DavidFirth/norman",
                    build_opts = build_opts,
