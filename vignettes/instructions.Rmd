@@ -69,7 +69,7 @@ Whenever you _do_ find the need to update **norman**,
 in your _R_ console just
 issue the following command:
 ```
-norman:::update()
+norman::update()
 ```
 
 # 1.  Make a separate folder for each report that you will prepare (if not made already)
