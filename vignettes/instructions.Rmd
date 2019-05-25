@@ -23,7 +23,7 @@ I recommend reading the whole document before doing anything --- to get the idea
 
 # 0. Setup your _RStudio_ and _LaTeX_ (if not done already)
 
-The instructions below (from step 1 onwards) will all assume that you have a functioning installation of _R_, _RStudio_ and _LaTeX_ --- specifically, a setup that is capable of "knitting" an _R Markdown_ (`.Rmd`) file to a PDF output document. (A part of that setup with be the installation of the _R_ add-on package **rmarkdown**.)
+The instructions below (from step 1 onwards) will all assume that you have a functioning installation of _R_, _Rtools_, _RStudio_ and _LaTeX_ --- specifically, a setup that is capable of "knitting" an _R Markdown_ (`.Rmd`) file to a PDF output document. (A part of that setup with be the installation of the _R_ add-on package **rmarkdown**.)
 
 These installations are all fairly standard. Our IT support staff should be able to handle it without problem.
 
@@ -42,7 +42,7 @@ The package **norman** builds Warwick Statistics reports on exam marks.
 To install **norman** for the first time: in your _R_ Console (which is one of the panes in the _RStudio_ window), paste the following and hit return:
 ```
 if (!("remotes" %in% installed.packages()[,"Package"])) install.packages("remotes")
-remotes::install_github("DavidFirth/norman", build_opts = "")
+remotes::install_github("DavidFirth/norman", build_opts = "--no-build-vignettes")
 ```
 
 The installation of **norman** should also trigger the installation of 2 other 
@@ -69,10 +69,8 @@ Whenever you _do_ find the need to update **norman**,
 in your _R_ console just
 issue the following command:
 ```
-remotes::install_github("DavidFirth/norman", build_opts = "")
+norman:::update()
 ```
-(If you get a _warning_ message after doing that, it can be safely ignored.)
-
 
 # 1.  Make a separate folder for each report that you will prepare (if not made already)
 

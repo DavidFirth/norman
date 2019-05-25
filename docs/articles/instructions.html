@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">norman</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@
 <div id="setup-your-rstudio-and-latex-if-not-done-already" class="section level1">
 <h1 class="hasAnchor">
 <a href="#setup-your-rstudio-and-latex-if-not-done-already" class="anchor"></a>0. Setup your <em>RStudio</em> and <em>LaTeX</em> (if not done already)</h1>
-<p>The instructions below (from step 1 onwards) will all assume that you have a functioning installation of <em>R</em>, <em>RStudio</em> and <em>LaTeX</em> — specifically, a setup that is capable of “knitting” an <em>R Markdown</em> (<code>.Rmd</code>) file to a PDF output document. (A part of that setup with be the installation of the <em>R</em> add-on package <strong>rmarkdown</strong>.)</p>
+<p>The instructions below (from step 1 onwards) will all assume that you have a functioning installation of <em>R</em>, <em>Rtools</em>, <em>RStudio</em> and <em>LaTeX</em> — specifically, a setup that is capable of “knitting” an <em>R Markdown</em> (<code>.Rmd</code>) file to a PDF output document. (A part of that setup with be the installation of the <em>R</em> add-on package <strong>rmarkdown</strong>.)</p>
 <p>These installations are all fairly standard. Our IT support staff should be able to handle it without problem.</p>
 <p>It’s probably best to test your setup on a relatively <em>simple</em> R Markdown document, such as the one you get when selecting <strong>File –&gt; New file –&gt; R markdown</strong> in Rstudio’s menu. With such a file open in the <em>RStudio</em> editor, try doing <strong>Knit to PDF</strong> (from the “Knit” menu).</p>
 <p>In Windows, setting up these things seems sometimes to be problematic, I don’t know why. But there are plenty of tips available online (e.g., <a href="https://rickpackblog.wordpress.com/2017/10/04/miktex-install-for-r-windows-pdf-output-r-markdown/" class="uri">https://rickpackblog.wordpress.com/2017/10/04/miktex-install-for-r-windows-pdf-output-r-markdown/</a> ). Good luck with it! Thankfully you’ll only need to do it once — until you get a new computer, of course.</p>
@@ -105,7 +105,7 @@
 <p>The package <strong>norman</strong> builds Warwick Statistics reports on exam marks.</p>
 <p>To install <strong>norman</strong> for the first time: in your <em>R</em> Console (which is one of the panes in the <em>RStudio</em> window), paste the following and hit return:</p>
 <pre><code>if (!("remotes" %in% installed.packages()[,"Package"])) install.packages("remotes")
-remotes::install_github("DavidFirth/norman", build_opts = "")</code></pre>
+remotes::install_github("DavidFirth/norman", build_opts = "--no-build-vignettes")</code></pre>
 <p>The installation of <strong>norman</strong> should also trigger the installation of 2 other packages if you do not have them already. They are <strong>aplpack</strong> and <strong>ggplot2</strong>.</p>
 </div>
 <div id="installing-rmarkdown-if-you-have-not-done-it-already-in-step-0" class="section level2">
@@ -120,8 +120,7 @@ remotes::install_github("DavidFirth/norman", build_opts = "")</code></pre>
 </h2>
 <p>This will be needed only later, whenever the <strong>norman</strong> package itself has been updated to a new version — for example, after <strong>norman</strong> has been improved to fix bugs or to add new features to the reports it makes. If you have only just installed <strong>norman</strong> (as detailed above), you should <em>skip this section for now but keep it in mind for when needed.</em></p>
 <p>Whenever you <em>do</em> find the need to update <strong>norman</strong>, in your <em>R</em> console just issue the following command:</p>
-<pre><code><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">remotes::install_github("DavidFirth/norman", build_opts = "")</a></code></pre>
-<p>(If you get a <em>warning</em> message after doing that, it can be safely ignored.)</p>
+<pre><code>norman:::update()</code></pre>
 </div>
 </div>
 <div id="make-a-separate-folder-for-each-report-that-you-will-prepare-if-not-made-already" class="section level1">

@@ -416,4 +416,21 @@ meddiff_fit <- function(m) {
     return(result)
 }
 
-
+#' Update the \code{norman} package --- a wrapper for \code{remotes::install_github}
+#'
+#' @param build_opts Character; options for \code{R CMD build}.  Default is \code{"--no-build-vignettes"}.
+#' @param ... Other arguments to pass to \code{remotes::install_github}
+#'
+#' @examples
+#' \dontrun{
+#' norman::update()
+#' norman::update(force = TRUE)
+#' }
+#'
+#' @importFrom remotes install_github
+#'
+update <- function(build_opts = "--no-build-vignettes", ...) {
+    install_github("DavidFirth/norman",
+                   build_opts = build_opts,
+                   ...)
+}
