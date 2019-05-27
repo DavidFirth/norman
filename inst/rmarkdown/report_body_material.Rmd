@@ -1,5 +1,5 @@
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, comment = NA)
+knitr::opts_chunk$set(echo = FALSE, comment = NA, message = FALSE)
 ## Packages that must be installed in R, to run this:
 library(aplpack)
 library(ggplot2)
