@@ -9,9 +9,9 @@ options(width = 100)
 
 # THE DATA USED IN THIS REPORT
 
-## The data folder and its contents
+## The marks folder and its contents
 
-The **full path** to the data folder used in this report is:
+The **full path** to the marks folder used in this report is:
 ```{r report_the_data_path}
 marks_folder <- paste0(working_directory, "/marks")
 norman::print_path(marks_folder)
