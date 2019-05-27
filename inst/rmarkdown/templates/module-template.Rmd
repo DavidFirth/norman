@@ -5,7 +5,7 @@
 
 \bigskip
 
-```{r stemplot-module-code}
+```{r stemplot-module-code, prattle=TRUE}
 stemplot <- norman::stemleaf("module-code", module_marks)
 cat(stemplot, sep = "\n")
 ```
