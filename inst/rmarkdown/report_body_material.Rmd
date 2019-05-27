@@ -153,6 +153,7 @@ student_overall_mean <- rowMeans(marks_matrix, na.rm = TRUE)
 ```
 
 ```{r make-module-pages, include = FALSE}
+message("ccc")
 knit_hooks$set(prattle = function(before, options, envir) {
     if (before) message("bbb")  
 })
