@@ -7,7 +7,6 @@
 
 ```{r message-module-code, prattle=TRUE}
 the_message <- "module-code"
-message("aaa")
 ```
 
 ```{r stemplot-module-code}
