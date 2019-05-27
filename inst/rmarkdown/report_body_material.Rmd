@@ -153,9 +153,6 @@ student_overall_mean <- rowMeans(marks_matrix, na.rm = TRUE)
 ```
 
 ```{r make-module-pages, include = FALSE}
-#knit_hooks$set(prattle = function(before, options, envir) {
-#    if (!before) message(the_message)  
-#})
 module_pages <- norman::make_module_pages(working_directory,
                                           module_codes, module_names)
 ```
