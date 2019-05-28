@@ -115,9 +115,11 @@ rsq <- summary(mdfit)$r.squared
 
 ## The computed module effects
 
-Easiest to hardest.  All relative to the average module.
+Easiest to hardest.  All are **relative to the average module**. 
 
 Also shown here, for each of the modules, is the total number (Count) of mark-pair comparisons that were available for that module.
+
+(The average Effect is set to zero, _arbitrarily_: in this analysis it is only the _differences_ between modules that are interpretable.   The specific average used for this is the _weighted_ mean, the weights being the values shown in the _Count_ column.  This prevents small modules from having an undue influence on how the Effect values are centred in the table below.)
 
 ```{r report_the_module_effects, results="asis"}
 mdf <- norman::get_module_effects(module_codes, mdd)
