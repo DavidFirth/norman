@@ -101,7 +101,7 @@ This analysis is similar to Tukey's _median polish_ analysis, but is both more t
 
 For completeness, in case needed, the median differences from stage 1 are reported in full, in the next sub-section.
 
-**The result of this median-of-differences analysis is the following table of module effects.**  The effects are centered such that their mean is zero.  Also reported in the table is the total number of within-student differences that were available to use in this analysis, for each module.
+**The result of this median-of-differences analysis is the following table of module effects.**  The effects are centred such that their mean is zero.  Also reported in the table is the total number of within-student differences that were available to use in this analysis, for each module.
 
 
 ```{r compute-median-differences, include = FALSE}
@@ -119,7 +119,7 @@ Easiest to hardest.  All are **relative to the average module**.
 
 Also shown here, for each of the modules, is the total number (Count) of mark-pair comparisons that were available for that module.
 
-(The average Effect is set to zero, _arbitrarily_: in this analysis it is only the _differences_ between modules that are interpretable.   The specific average used for this is the _weighted_ mean, the weights being the values shown in the _Count_ column.  This prevents small modules from having an undue influence on how the Effect values are centred in the table below.)
+(The average Effect is set to zero, _arbitrarily_: in this analysis it is only the _differences_ between modules that are interpretable.   The specific average used for this is the _weighted_ mean, the weights being the numbers shown in the _Count_ column.  This prevents small modules from having an undue influence on how the Effect values are centred --- for presentation purposes --- in the table below.)
 
 ```{r report_the_module_effects, results="asis"}
 mdf <- norman::get_module_effects(module_codes, mdd)
