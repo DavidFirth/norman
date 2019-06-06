@@ -1,3 +1,7 @@
+# norman 1.0.3 (2019-06-06)
+
+* Class boundaries now work with non-integer marks (with a single decimal place)
+
 # norman 1.0.2 (2019-05-28)
 
 * Minor bug fixes

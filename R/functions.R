@@ -262,13 +262,13 @@ raw_mark_classes <-  function(marks_matrix, dp = 0){
     result[, "(zero)"] <- 100 * apply(marks_matrix, 2, function(col) {
                                   sum(col == 0, na.rm = TRUE)}) / N
     result[, "1--39"] <- 100 * apply(marks_matrix, 2, function(col) {
-                                  sum((col >= 1) & (col <= 39), na.rm = TRUE)}) / N
+                                  sum((col >= 1) & (col <= 39.9), na.rm = TRUE)}) / N
     result[, "40--49"] <- 100 * apply(marks_matrix, 2, function(col) {
-                                  sum((col >= 40) & (col <= 49), na.rm = TRUE)}) / N
+                                  sum((col >= 40) & (col <= 49.9), na.rm = TRUE)}) / N
     result[, "50--59"] <- 100 * apply(marks_matrix, 2, function(col) {
-                                  sum((col >= 50) & (col <= 59), na.rm = TRUE)}) / N
+                                  sum((col >= 50) & (col <= 59.9), na.rm = TRUE)}) / N
     result[, "60--69"] <- 100 * apply(marks_matrix, 2, function(col) {
-                                  sum((col >= 60) & (col <= 69), na.rm = TRUE)}) / N
+                                  sum((col >= 60) & (col <= 69.9), na.rm = TRUE)}) / N
     result[, "70+"] <- 100 * apply(marks_matrix, 2, function(col) {
                                  sum((col >= 70), na.rm = TRUE)}) / N
     return(round(result, dp))
