@@ -1,3 +1,7 @@
+# norman 1.0.4 (2019-06-13)
+
+* Every report produced now states which version of _norman_ was used
+
 # norman 1.0.3 (2019-06-06)
 
 * Class boundaries now work with non-integer marks (with a single decimal place)

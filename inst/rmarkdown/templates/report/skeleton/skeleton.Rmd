@@ -3,7 +3,7 @@ title: ????
 author: 
 - Department of Statistics
 - \small (prepared by ????)
-date: \rm Report written `r format(Sys.time(), "%Y-%m-%d at %H:%M")`
+date: \rm Report written `r format(Sys.time(), "%Y-%m-%d at %H:%M")`, using \emph{norman} version ``packageDescription("norman")$Version`
 output:
   pdf_document:
     toc: yes
