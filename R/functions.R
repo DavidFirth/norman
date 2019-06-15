@@ -359,7 +359,7 @@ meddiff_for_display <- function(xmat, threshold = 5) {
             meddiffs[1, mm] <- if (ndiffs >= threshold) {
                                    round(median(diffs, na.rm = TRUE), 0)
                                } else NA
-            meddiffs[2, mm] <- NDIFFS
+            meddiffs[2, mm] <- ndiffs
         }
         is.na(meddiffs[1, m]) <- TRUE
         result[[m]] <- meddiffs[, !is.na(meddiffs)[1,,drop = FALSE], drop = FALSE]
