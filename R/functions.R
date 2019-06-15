@@ -356,13 +356,12 @@ meddiff_for_display <- function(xmat, threshold = 5) {
         for (mm in (1:M)) {
             diffs <- xmat[, m] - xmat[, mm]
             ndiffs <- sum(!is.na(diffs))
-            if (ndiffs >= threshold) {
-                meddiffs[1, mm] <- round(median(diffs, na.rm = TRUE), 0)
-            }
-            meddiffs[2, mm] <- sum(!is.na(diffs))
+            meddiffs[1, mm] <- if (ndiffs >= threshold) {
+                                   round(median(diffs, na.rm = TRUE), 0)
+                               } else NA
+            meddiffs[2, mm] <- NDIFFS
         }
         is.na(meddiffs[1, m]) <- TRUE
-        browser()
         result[[m]] <- meddiffs[, !is.na(meddiffs)[1,,drop = FALSE], drop = FALSE]
     }
     return(result)
