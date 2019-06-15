@@ -3,27 +3,20 @@
 **Module effect** (as described above): 
 **`r norman::print_module_effect("module-code", mdf)` marks**
 
-\bigskip
-
 ```{r stemplot-module-code}
 stemplot <- norman::stemleaf("module-code", module_marks)
 cat(stemplot, sep = "\n")
 ```
 
-\bigskip\bigskip
-
 ```{r sevennum-module-code}
 knitr::kable(summaries["module-code",,drop = FALSE])
 ```
 
-\smallskip
 Fraction of marks in each degree-class range (%):
 
 ```{r classes-module-code}
 knitr::kable(classes["module-code",,drop = FALSE])
 ```
-
-\bigskip
 
 ```{r scatter-module-code, out.width = '100%', fig.align='center'}
 norman::scatter("module-code", marks_matrix, student_overall_mean)
