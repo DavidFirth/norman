@@ -1,6 +1,7 @@
-# norman 1.0.4 (2019-06-13)
+# norman 1.0.4 (2019-06-15)
 
 * Every report produced now states which version of _norman_ was used
+* A median difference is now included only if based on at least 5 students
 
 # norman 1.0.3 (2019-06-06)
 

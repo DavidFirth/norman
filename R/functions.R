@@ -65,6 +65,20 @@ check_modules_expected <- function(working_directory, module_codes){
     list(extras = extras, missing = missing)
 }
 
+qqplot.data <- function (vec) # argument: vector of numbers
+{
+  # following four lines from base R's qqline()
+  y <- quantile(vec[!is.na(vec)], c(0.25, 0.75))
+  x <- qnorm(c(0.25, 0.75))
+  slope <- diff(y)/diff(x)
+  int <- y[1L] - slope * x[1L]
+
+  d <- data.frame(resids = vec)
+
+  ggplot(d, aes(sample = resids)) + stat_qq() + geom_abline(slope = slope, intercept = int)
+
+}
+
 #' Print and return a table of module effects
 #'
 #' @param module_codes Character; the vector of module codes used in the report
@@ -289,12 +303,12 @@ raw_mark_classes <-  function(marks_matrix, dp = 0){
 #'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
 #'   module = c("A", "B", "C", "D", "E")), .Names = c("student", "module")))
 #' print(x)
-#' meddiff(x)
+#' meddiff(x, threshold = 1)
 #'
 #' @importFrom stats median
 #'
 #' @export
-meddiff <- function(xmat) {
+meddiff <- function(xmat, threshold = 5) {
     ## rows are students, columns are modules
     S <- nrow(xmat)
     M <- ncol(xmat)
@@ -303,8 +317,9 @@ meddiff <- function(xmat) {
     for (m in 1:(M-1)) {
         for (mm in (m+1):M) {
             diffs <- xmat[, m] - xmat[, mm]
-            result[m, mm] <- median(diffs, na.rm = TRUE)
-            result[mm, m] <- sum(!is.na(diffs))
+            ndiffs <- sum(!is.na(diffs))
+            if (ndiffs >= threshold) result[m, mm] <- median(diffs, na.rm = TRUE)
+            result[mm, m] <- ndiffs
         }
     }
     return(result)
@@ -324,12 +339,12 @@ meddiff <- function(xmat) {
 #'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
 #'   module = c("A", "B", "C", "D", "E")), .Names = c("student", "module")))
 #' print(x)
-#' meddiff_for_display(x)
+#' meddiff_for_display(x, threshold = 1)
 #'
 #' @importFrom stats median
 #'
 #' @export
-meddiff_for_display <- function(xmat) {
+meddiff_for_display <- function(xmat, threshold = 5) {
     ## rows are students, columns are modules
     S <- nrow(xmat)
     M <- ncol(xmat)
@@ -340,7 +355,9 @@ meddiff_for_display <- function(xmat) {
     for (m in 1:M) {
         for (mm in (1:M)) {
             diffs <- xmat[, m] - xmat[, mm]
-            meddiffs[1, mm] <- round(median(diffs, na.rm = TRUE), 0)
+            ndiffs <- sum(!is.na(diffs))
+            if (ndiffs >= threshold)
+                meddiffs[1, mm] <- round(median(diffs, na.rm = TRUE), 0)
             meddiffs[2, mm] <- sum(!is.na(diffs))
         }
         is.na(meddiffs[1, m]) <- TRUE
