@@ -8,6 +8,10 @@ stemplot <- norman::stemleaf("module-code", module_marks)
 cat(stemplot, sep = "\n")
 ```
 
+```{r scatter-module-code, out.width = '100%', fig.align='center'}
+norman::scatter("module-code", marks_matrix, student_overall_mean)
+```
+
 ```{r sevennum-module-code}
 knitr::kable(summaries["module-code",,drop = FALSE])
 ```
@@ -17,6 +21,4 @@ knitr::kable(summaries["module-code",,drop = FALSE])
 ```{r classes-module-code}
 knitr::kable(classes["module-code (%)",,drop = FALSE])
 ```
-```{r scatter-module-code, out.width = '100%', fig.align='center'}
-norman::scatter("module-code", marks_matrix, student_overall_mean)
-```
+
