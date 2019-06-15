@@ -1,3 +1,5 @@
+\newpage
+
 ## module-code module-name
 
 **Module effect** (as described above): 
