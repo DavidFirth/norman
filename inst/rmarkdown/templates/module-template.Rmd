@@ -11,13 +11,9 @@ cat(stemplot, sep = "\n")
 ```{r sevennum-module-code}
 knitr::kable(summaries["module-code",,drop = FALSE])
 ```
-
-Fraction of marks in each degree-class range (%):
-
 ```{r classes-module-code}
-knitr::kable(classes["module-code",,drop = FALSE])
+knitr::kable(classes["module-code (%)",,drop = FALSE])
 ```
-
 ```{r scatter-module-code, out.width = '100%', fig.align='center'}
 norman::scatter("module-code", marks_matrix, student_overall_mean)
 ```

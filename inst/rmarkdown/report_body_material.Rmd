@@ -85,6 +85,7 @@ kable(summaries)
 ```{r classes_all_modules}
 classes <- norman::raw_mark_classes(marks_matrix)
 kable(classes)
+rownames(classes) <- paste(rownames(classes), "(%)")
 ```
 
 \newpage
