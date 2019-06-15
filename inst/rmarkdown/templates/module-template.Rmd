@@ -11,7 +11,7 @@ cat(stemplot, sep = "\n")
 ```{r sevennum-module-code}
 knitr::kable(summaries["module-code",,drop = FALSE])
 ```
-\vskip -10pt
+\vspace{-10pt}
 
 ```{r classes-module-code}
 knitr::kable(classes["module-code (%)",,drop = FALSE])
