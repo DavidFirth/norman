@@ -129,29 +129,30 @@ mdf <- norman::get_module_effects(module_codes, mdd)
 
 These module effects explain `r paste0(round(100 * rsq, 0), "%")` of the variation among the median differences listed below.
 
-### A normal Q-Q plot of the module effects
+## Normal Q-Q plot of the module effects
 
 If the variation seen between modules is just natural (roughly normally distributed) variation, then the points in this graph should not deviate far from a straight line.
 
 Points near the ends of the graph that are far above or far below the line represent modules that deserve scrituny.
 
-
 ```{r}
-qqplot.data <- function (vec) # argument: vector of numbers
-{
-  # following four lines from base R's qqline()
-  y <- quantile(vec[!is.na(vec)], c(0.25, 0.75))
-  x <- qnorm(c(0.25, 0.75))
-  slope <- diff(y)/diff(x)
-  int <- y[1L] - slope * x[1L]
-
-  d <- data.frame(resids = vec)
-
-  ggplot(d, aes(sample = resids)) + stat_qq() + geom_abline(slope = slope, intercept = int)    
-}
-
-thegraph <- qqplot.data(mdf$Effect)
-thegraph <- thegraph + labs(x = "Normal quantile", y = "Module effect")
+effects <- mdf$Effect
+n <- length(effects)
+hard <- effects <= -10
+labels1 <- ifelse(hard, row.names(mdf), "")
+easy <- effects >= 10
+labels2 <- ifelse(easy, row.names(mdf), "")
+sample <- sort(effects)
+probs <- (1:n) / (n + 1)
+theoretical <- qnorm(probs)
+greenline <- lm(sample ~ theoretical, subset = floor(n / 4) : ceiling(3 * n / 4))
+dat <- data.frame(sample = sample, theoretical = theoretical)
+thegraph <- ggplot(dat, aes(x = theoretical, y = sample)) + geom_point() +
+    geom_text(size = 3, hjust = 0, nudge_x = 0.05, label = rev(labels1)) +
+    geom_text(size = 3, hjust = 1, nudge_x = -0.05, label = rev(labels2)) +
+    labs(x = "Normal quantile", y = "Module effect") +
+    geom_abline(intercept = coef(greenline)[1], slope = coef(greenline)[2],
+                color = "green")
 thegraph
 ```
 
