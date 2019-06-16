@@ -1,3 +1,4 @@
+
 \newpage
 
 ## module-code module-name
@@ -5,10 +6,14 @@
 **Module effect** (as described above): 
 **`r norman::print_module_effect("module-code", mdf)` marks**
 
+\small
+
 ```{r stemplot-module-code}
 stemplot <- norman::stemleaf("module-code", module_marks)
 cat(stemplot, sep = "\n")
 ```
+
+\normalsize 
 
 ```{r scatter-module-code, out.width = '100%', fig.align='center'}
 norman::scatter("module-code", marks_matrix, student_overall_mean)
@@ -23,4 +28,5 @@ knitr::kable(summaries["module-code",,drop = FALSE])
 ```{r classes-module-code}
 knitr::kable(classes["module-code (%)",,drop = FALSE])
 ```
+
 
