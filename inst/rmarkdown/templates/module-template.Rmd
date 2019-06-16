@@ -1,6 +1,4 @@
 
-\newpage
-
 ## module-code module-name
 
 **Module effect** (as described above): 
@@ -28,5 +26,8 @@ knitr::kable(summaries["module-code",,drop = FALSE])
 ```{r classes-module-code}
 knitr::kable(classes["module-code (%)",,drop = FALSE])
 ```
+
+\newpage
+
 
 

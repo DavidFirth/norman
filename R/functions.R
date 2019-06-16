@@ -93,8 +93,9 @@ get_module_effects <- function(module_codes, mdd) {
     }
     mdfit <- mdfit$coef
     names(mdfit) <- module_codes
-    weighted_mean <- sum(mdfit * count) / sum(count)
-    mdfit <- round(mdfit - weighted_mean, 1)
+    #weighted_mean <- sum(mdfit * count) / sum(count)
+    #mdfit <- round(mdfit - weighted_mean, 1)
+    mdfit <- round(mdfit - median(mdfit), 1)
     mdf <- data.frame(Effect = mdfit, Count = count)
     mdf <- mdf[order(mdf$Effect, decreasing = TRUE), ]
     thetable <- kable(mdf)

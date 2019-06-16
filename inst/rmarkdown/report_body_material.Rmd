@@ -96,13 +96,13 @@ rownames(classes) <- paste(rownames(classes), "(%)")
 Module effects are measured via a two-stage analysis:
 
 1. For every possible pair of modules, calculate the **median of the differences in marks** (across the students who took both modules).
-2. Find, by weighted least squares, the **vector of module effects that best fits** those median differences.
+2. Find, by weighted least squares, the **vector of module effects that best fits** those median differences. Median differences based upon fewer than 5 observed differences are excluded from this calculation; otherwise they each are assigned weight equal to the number of observed differences underlying the computed median difference.
 
 This analysis is similar to Tukey's _median polish_ analysis, but is both more transparent and more robust for the present purpose.  (Blog post at https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table/ amplifies this a little.)
 
 For completeness, in case needed, the median differences from stage 1 are reported in full, in the next sub-section.
 
-**The result of this median-of-differences analysis is the following table of module effects.**  The effects are centred such that their mean is zero.  Also reported in the table is the total number of within-student differences that were available to use in this analysis, for each module.
+**The result of this median-of-differences analysis is the following table of module effects.**  The effects are centred such that their median is zero.  Also reported in the table is the total number of within-student differences that were available to use in this analysis, for each module.
 
 
 ```{r compute-median-differences, include = FALSE}
@@ -116,11 +116,12 @@ rsq <- summary(mdfit)$r.squared
 
 ## The computed module effects
 
-Easiest to hardest.  All are **relative to the average module**. 
+Easiest to hardest.  All are **relative to the median module**. 
 
 Also shown here, for each of the modules, is the total number (Count) of mark-pair comparisons that were available for that module.
 
-(The average Effect is set to zero, _arbitrarily_: in this analysis it is only the _differences_ between modules that are interpretable.   The specific average used for this is the _weighted_ mean, the weights being the numbers shown in the _Count_ column.  This prevents small modules from having an undue influence on how the Effect values are centred --- for presentation purposes --- in the table below.)
+(The median Effect is set to zero, _arbitrarily_: in this analysis it is only the _differences_ between modules that are interpretable.)   
+
 
 ```{r report_the_module_effects, results="asis"}
 mdf <- norman::get_module_effects(module_codes, mdd)
@@ -133,10 +134,10 @@ These module effects explain `r paste0(round(100 * rsq, 0), "%")` of the variati
 
 These are listed here for completeness, just in case any of them needs to be looked at (in the scaling meeting, for example).
 
-For each considered module, tabulated here are all _other_ modules that were taken (by at least one student) together with the module under consideration.  For each such 'comparator' module, two numbers are shown here:
+For each considered module, tabulated here are all _other_ modules that were taken (by at least 5 students) together with the module under consideration.  For each such 'comparator' module, two numbers are shown here:
 
 1. The **median difference** between students' scores for the two modules (rounded to integer where needed).  Positive values indicate a comparator module that was found to be harder than the module under consideration; and the opposite for negative values.
-2. The **count** of students who took both modules.
+2. The **count** of students who took both modules. (Comparator modules where the count is smaller than 5 are excluded.)
 
 \small
 
