@@ -129,6 +129,31 @@ mdf <- norman::get_module_effects(module_codes, mdd)
 
 These module effects explain `r paste0(round(100 * rsq, 0), "%")` of the variation among the median differences listed below.
 
+### A normal Q-Q plot of the module effects
+
+If the variation seen between modules is just natural (roughly normally distributed) variation, then the points in this graph should not deviate far from a straight line.
+
+Points near the ends of the graph that are far above or far below the line represent modules that deserve scrituny.
+
+
+```{r}
+qqplot.data <- function (vec) # argument: vector of numbers
+{
+  # following four lines from base R's qqline()
+  y <- quantile(vec[!is.na(vec)], c(0.25, 0.75))
+  x <- qnorm(c(0.25, 0.75))
+  slope <- diff(y)/diff(x)
+  int <- y[1L] - slope * x[1L]
+
+  d <- data.frame(resids = vec)
+
+  ggplot(d, aes(sample = resids)) + stat_qq() + geom_abline(slope = slope, intercept = int)    
+}
+
+thegraph <- qqplot.data(mdf$Effect)
+thegraph <- thegraph + labs(x = "Normal quantile", y = "Module effect")
+thegraph
+```
 
 ## The full list of median differences
 
