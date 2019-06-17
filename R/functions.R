@@ -101,7 +101,7 @@ get_module_effects <- function(module_codes, mdd) {
 print_module_effect <- function(module_code, mdf){
     effect <- round(mdf[module_code, "Effect"], 1)
     if (effect < 0) pm <- "minus"
-    if (effect > 0) pm <- "plus"
+    if (effect >= 0) pm <- "plus"
     paste(pm, sprintf("%2.1f", abs(effect)))
 }
 
