@@ -174,7 +174,7 @@ stemleaf  <- function(module_code, module_marks) {
 #' @import ggplot2
 #'
 #' @export
-scatter  <- function(module_code, marks_matrix, student_overall_mean) {
+scatter  <- function(module_code, marks_matrix, student_overall_median) {
     options(warn = -1)
     final_years_exams <- "ST903" %in% colnames(marks_matrix)
     if (final_years_exams) {
@@ -192,11 +192,11 @@ scatter  <- function(module_code, marks_matrix, student_overall_mean) {
     }
     module_mark <- marks_matrix[, module_code]
     thegraph <- if (!final_years_exams) {
-                    ggplot(, aes(y = module_mark, x = student_overall_mean)) +
+                    ggplot(, aes(y = module_mark, x = student_overall_median)) +
                         geom_abline(slope = 1, intercept = 0, col = "grey") +
                         geom_point(colour = "#555555")
                 } else {
-                    ggplot(, aes(y = module_mark, x = student_overall_mean,
+                    ggplot(, aes(y = module_mark, x = student_overall_median,
                                  color = group)) +  ## shape = group ?
                         geom_abline(slope = 1, intercept = 0, col = "grey") +
                         geom_point() +
@@ -205,7 +205,7 @@ scatter  <- function(module_code, marks_matrix, student_overall_mean) {
                 }
     thegraph <- thegraph +
         theme(aspect.ratio = 1) +
-        labs(x = "Average of ST modules taken this year", y = module_code) +
+        labs(x = "Median of ST modules taken this year", y = module_code) +
         expand_limits(y = c(0, 100), x = c(0, 100)) +
         theme(panel.grid.minor = element_line(colour="white", size=0.5)) +
         scale_y_continuous(minor_breaks = c(0, 40, 50, 60, 70, 100),

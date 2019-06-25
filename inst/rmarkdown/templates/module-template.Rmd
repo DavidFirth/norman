@@ -14,7 +14,7 @@ cat(stemplot, sep = "\n")
 \normalsize 
 
 ```{r scatter-module-code, out.width = '100%', fig.align='center'}
-norman::scatter("module-code", marks_matrix, student_overall_mean)
+norman::scatter("module-code", marks_matrix, student_overall_median)
 ```
 
 ```{r sevennum-module-code}

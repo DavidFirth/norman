@@ -179,7 +179,7 @@ norman::list_all_median_differences(mdd)
 # INDIVIDUAL MODULE SUMMARIES
 
 ```{r make_overall_means, include = FALSE}
-student_overall_mean <- rowMeans(marks_matrix, na.rm = TRUE)
+student_overall_median <- rowMedians(marks_matrix, na.rm = TRUE)
 ```
 
 ```{r make-module-pages, include = FALSE}
