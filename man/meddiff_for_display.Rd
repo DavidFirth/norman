@@ -4,10 +4,12 @@
 \alias{meddiff_for_display}
 \title{A version of \code{meddiff} to compute median differences in a different format}
 \usage{
-meddiff_for_display(xmat)
+meddiff_for_display(xmat, threshold = 5)
 }
 \arguments{
 \item{xmat}{A numeric matrix}
+
+\item{threshold}{Numeric scalar, minimum number of pairs needed for computation of a median difference}
 }
 \value{
 A list, with one vector component for each column of \code{xmat}
@@ -24,6 +26,6 @@ x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
   module = c("A", "B", "C", "D", "E")), .Names = c("student", "module")))
 print(x)
-meddiff_for_display(x)
+meddiff_for_display(x, threshold = 1)
 
 }

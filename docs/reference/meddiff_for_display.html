@@ -127,7 +127,7 @@
     <p>A version of <code>meddiff</code> to compute median differences in a different format</p>
     </div>
 
-    <pre class="usage"><span class='fu'>meddiff_for_display</span>(<span class='no'>xmat</span>)</pre>
+    <pre class="usage"><span class='fu'>meddiff_for_display</span>(<span class='no'>xmat</span>, <span class='kw'>threshold</span> <span class='kw'>=</span> <span class='fl'>5</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,6 +135,10 @@
     <tr>
       <th>xmat</th>
       <td><p>A numeric matrix</p></td>
+    </tr>
+    <tr>
+      <th>threshold</th>
+      <td><p>Numeric scalar, minimum number of pairs needed for computation of a median difference</p></td>
     </tr>
     </table>
 
@@ -154,30 +158,30 @@
 #&gt; student  A  B  C  D  E
 #&gt;       i NA NA NA 45 60
 #&gt;       j NA NA NA 55 60
-#&gt;       k 10 20 30 NA 50</div><div class='input'><span class='fu'>meddiff_for_display</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; $A
-#&gt;                  
-#&gt; Median difference
-#&gt; Count            
+#&gt;       k 10 20 30 NA 50</div><div class='input'><span class='fu'>meddiff_for_display</span>(<span class='no'>x</span>, <span class='kw'>threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; $A
+#&gt;                     B   C   E
+#&gt; Median difference -10 -20 -40
+#&gt; Count               1   1   1
 #&gt; 
 #&gt; $B
-#&gt;                  
-#&gt; Median difference
-#&gt; Count            
+#&gt;                    A   C   E
+#&gt; Median difference 10 -10 -30
+#&gt; Count              1   1   1
 #&gt; 
 #&gt; $C
-#&gt;                  
-#&gt; Median difference
-#&gt; Count            
+#&gt;                    A  B   E
+#&gt; Median difference 20 10 -20
+#&gt; Count              1  1   1
 #&gt; 
 #&gt; $D
-#&gt;                  
-#&gt; Median difference
-#&gt; Count            
+#&gt;                     E
+#&gt; Median difference -10
+#&gt; Count               2
 #&gt; 
 #&gt; $E
-#&gt;                  
-#&gt; Median difference
-#&gt; Count            
+#&gt;                    A  B  C  D
+#&gt; Median difference 40 30 20 10
+#&gt; Count              1  1  1  2
 #&gt; </div><div class='input'>
 </div></pre>
   </div>

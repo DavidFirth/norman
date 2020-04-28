@@ -1,6 +1,7 @@
 # norman 1.0.6 (2020-04-28)
 
 * Inserted `stringsAsFactors = TRUE` in all calls to `read.csv()` and `data.frame()`, as a quick fix to ensure compatibility with new R major release 4.0.0.
+* Fixed a couple of documentation bugs
 
 # norman 1.0.5 (2019-06-16)
 

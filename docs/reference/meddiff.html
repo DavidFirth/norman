@@ -127,7 +127,7 @@
     <p>Compute a matrix of median differences</p>
     </div>
 
-    <pre class="usage"><span class='fu'>meddiff</span>(<span class='no'>xmat</span>)</pre>
+    <pre class="usage"><span class='fu'>meddiff</span>(<span class='no'>xmat</span>, <span class='kw'>threshold</span> <span class='kw'>=</span> <span class='fl'>5</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,6 +135,10 @@
     <tr>
       <th>xmat</th>
       <td><p>A numeric matrix</p></td>
+    </tr>
+    <tr>
+      <th>threshold</th>
+      <td><p>Numeric scalar, minimum number of pairs needed for computation of a median difference</p></td>
     </tr>
     </table>
 
@@ -155,12 +159,12 @@ columns in <code>xmat</code></p>
 #&gt; student  A  B  C  D  E
 #&gt;       i NA NA NA 45 60
 #&gt;       j NA NA NA 55 60
-#&gt;       k 10 20 30 NA 50</div><div class='input'><span class='fu'>meddiff</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;    A  B  C  D  E
-#&gt; A NA NA NA NA NA
-#&gt; B  1 NA NA NA NA
-#&gt; C  1  1 NA NA NA
-#&gt; D  0  0  0 NA NA
-#&gt; E  1  1  1  2 NA</div><div class='input'>
+#&gt;       k 10 20 30 NA 50</div><div class='input'><span class='fu'>meddiff</span>(<span class='no'>x</span>, <span class='kw'>threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt;    A   B   C  D   E
+#&gt; A NA -10 -20 NA -40
+#&gt; B  1  NA -10 NA -30
+#&gt; C  1   1  NA NA -20
+#&gt; D  0   0   0 NA -10
+#&gt; E  1   1   1  2  NA</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -166,7 +166,7 @@ stemleaf  <- function(module_code, module_marks) {
 #'
 #' @param module_code Character; the length-5 module code
 #' @param marks_matrix Numeric, the matrix of marks
-#' @param student_overall_mean The row means of marks_matrix
+#' @param student_overall_median The row medians of marks_matrix
 #' @return A \code{ggplot} object
 #'
 #' @import ggplot2
@@ -276,6 +276,7 @@ raw_mark_classes <-  function(marks_matrix, dp = 0){
 #' Compute a matrix of median differences
 #'
 #' @param xmat A numeric matrix
+#' @param threshold Numeric scalar, minimum number of pairs needed for computation of a median difference
 #' @return A square numeric matrix, with size equal to the number of
 #' columns in \code{xmat}
 #'
@@ -313,6 +314,7 @@ meddiff <- function(xmat, threshold = 5) {
 #' A version of \code{meddiff} to compute median differences in a different format
 #'
 #' @param xmat A numeric matrix
+#' @param threshold Numeric scalar, minimum number of pairs needed for computation of a median difference
 #' @return A list, with one vector component for each column of \code{xmat}
 #'
 #' @examples
@@ -391,7 +393,7 @@ list_all_median_differences <- function(mdd) {
 #'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
 #'   module = c("A", "B", "C", "D", "E")), .Names = c("student", "module")))
 #' print(x)
-#' md <- meddiff(x)
+#' md <- meddiff(x, threshold = 1)
 #' the_fit <- meddiff_fit(md)$coef
 #' names(the_fit) <- gsub("^X", "", names(the_fit))
 #' the_fit

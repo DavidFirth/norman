@@ -4,14 +4,14 @@
 \alias{scatter}
 \title{Make a module-specific scatterplot}
 \usage{
-scatter(module_code, marks_matrix, student_overall_mean)
+scatter(module_code, marks_matrix, student_overall_median)
 }
 \arguments{
 \item{module_code}{Character; the length-5 module code}
 
 \item{marks_matrix}{Numeric, the matrix of marks}
 
-\item{student_overall_mean}{The row means of marks_matrix}
+\item{student_overall_median}{The row medians of marks_matrix}
 }
 \value{
 A \code{ggplot} object

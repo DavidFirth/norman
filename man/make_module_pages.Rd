@@ -4,8 +4,12 @@
 \alias{make_module_pages}
 \title{Make a report page for each module}
 \usage{
-make_module_pages(working_directory, module_codes, module_names,
-  keep_tmpdir = FALSE)
+make_module_pages(
+  working_directory,
+  module_codes,
+  module_names,
+  keep_tmpdir = FALSE
+)
 }
 \arguments{
 \item{working_directory}{Character; the full path to the folder for the report}

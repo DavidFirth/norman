@@ -24,7 +24,7 @@ x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
   module = c("A", "B", "C", "D", "E")), .Names = c("student", "module")))
 print(x)
-md <- meddiff(x)
+md <- meddiff(x, threshold = 1)
 the_fit <- meddiff_fit(md)$coef
 names(the_fit) <- gsub("^X", "", names(the_fit))
 the_fit

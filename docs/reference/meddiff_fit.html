@@ -154,8 +154,11 @@
 #&gt; student  A  B  C  D  E
 #&gt;       i NA NA NA 45 60
 #&gt;       j NA NA NA 55 60
-#&gt;       k 10 20 30 NA 50</div><div class='input'><span class='no'>md</span> <span class='kw'>&lt;-</span> <span class='fu'>meddiff</span>(<span class='no'>x</span>)
-<span class='no'>the_fit</span> <span class='kw'>&lt;-</span> <span class='fu'>meddiff_fit</span>(<span class='no'>md</span>)$<span class='no'>coef</span></div><div class='output co'>#&gt; <span class='error'>Error in lm.wfit(x, y, w, offset = offset, singular.ok = singular.ok,     ...): 0 (non-NA) cases</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>the_fit</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"^X"</span>, <span class='st'>""</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>the_fit</span>))</div><div class='output co'>#&gt; <span class='error'>Error in gsub("^X", "", names(the_fit)): object 'the_fit' not found</span></div><div class='input'><span class='no'>the_fit</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'the_fit' not found</span></div><div class='input'>
+#&gt;       k 10 20 30 NA 50</div><div class='input'><span class='no'>md</span> <span class='kw'>&lt;-</span> <span class='fu'>meddiff</span>(<span class='no'>x</span>, <span class='kw'>threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+<span class='no'>the_fit</span> <span class='kw'>&lt;-</span> <span class='fu'>meddiff_fit</span>(<span class='no'>md</span>)$<span class='no'>coef</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>the_fit</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"^X"</span>, <span class='st'>""</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>the_fit</span>))
+<span class='no'>the_fit</span></div><div class='output co'>#&gt;   A   B   C   D   E 
+#&gt; -40 -30 -20 -10   0 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

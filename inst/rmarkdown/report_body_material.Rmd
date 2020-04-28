@@ -181,8 +181,7 @@ norman::list_all_median_differences(mdd)
 
 # INDIVIDUAL MODULE SUMMARIES
 
-```{r make_overall_means, include = FALSE}
-#student_overall_mean <- rowMeans(marks_matrix, na.rm = TRUE)
+```{r make_overall_medians, include = FALSE}
 student_overall_median <- apply(marks_matrix, 1, function(row) median(na.omit(row)))
 ```
 
