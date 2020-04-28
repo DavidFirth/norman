@@ -28,7 +28,8 @@ module_marks <- vector(mode = "list", length = length(module_codes))
 for (i in seq(along = filenames)) {
     module_marks[[module_codes[i]]] <-
         read.csv(paste0(marks_folder, "/", 
-                        filenames[i]))[, c("sprCode", "overallMark")]
+                        filenames[i]),
+                 stringsAsFactors = TRUE)[, c("sprCode", "overallMark")]
 }
 student_IDs <- sapply(module_marks, function(m) as.character(m[[1]]))
 module_marks <- sapply(module_marks, function(m) (m[[2]]))
@@ -49,7 +50,8 @@ checklist <- norman::check_modules_expected(working_directory, module_codes)
 
 ```{r check_module_names, include=FALSE}
 if (file.exists(paste0(working_directory, "/module_names.csv"))) {
-  module_names <- read.csv(paste0(working_directory, "/module_names.csv"))
+    module_names <- read.csv(paste0(working_directory, "/module_names.csv"),
+                             stringsAsFactors = TRUE)
   row.names(module_names) <- module_names[, 1]
   module_names$ModuleCode <- NULL
   missing_module_names <- module_codes[!module_codes %in% row.names(module_names)]
@@ -146,7 +148,8 @@ sample <- sort(effects)
 probs <- (1:n) / (n + 1)
 theoretical <- qnorm(probs)
 greenline <- lm(sample ~ theoretical, subset = floor(n / 4) : ceiling(3 * n / 4))
-dat <- data.frame(sample = sample, theoretical = theoretical)
+dat <- data.frame(sample = sample, theoretical = theoretical,
+                  stringsAsFactors = TRUE)
 thegraph <- ggplot(dat, aes(x = theoretical, y = sample)) + geom_point() +
     geom_text(size = 3, hjust = 0, nudge_x = 0.05, label = rev(labels1)) +
     geom_text(size = 3, hjust = 1, nudge_x = -0.05, label = rev(labels2)) +

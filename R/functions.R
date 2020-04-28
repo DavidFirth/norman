@@ -83,7 +83,8 @@ get_module_effects <- function(module_codes, mdd) {
     #weighted_mean <- sum(mdfit * count) / sum(count)
     #mdfit <- round(mdfit - weighted_mean, 1)
     mdfit <- round(mdfit - median(mdfit), 1)
-    mdf <- data.frame(Effect = mdfit, Count = count)
+    mdf <- data.frame(Effect = mdfit, Count = count,
+                      stringsAsFactors = TRUE)
     mdf <- mdf[order(mdf$Effect, decreasing = TRUE), ]
     thetable <- kable(mdf)
     # fix the minus signs in the table
@@ -115,9 +116,6 @@ print_module_effect <- function(module_code, mdf){
 #' @export
 make_module_pages <- function(working_directory, module_codes, module_names,
                               keep_tmpdir = FALSE) {
-  #  marks_matrix <<- cbind(rowMeans(marks_matrix, na.rm = TRUE), marks_matrix)
-  #  marks_df <<- as.data.frame(marks_matrix)
-  #  names(marks_df)[1] <<- "overall_mean"
     out <- NULL
     template <- scan(system.file("rmarkdown", "templates", "module-template.Rmd",
                                  package = "norman"),
@@ -234,7 +232,6 @@ raw_mark_summaries <- function(marks_matrix){
     result[, "(N)"] <- apply(marks_matrix, 2, function(col) sum(!is.na(col)))
     result[, "Zeros"] <- apply(marks_matrix, 2, function(col) {
         sum(col == 0, na.rm = TRUE)})
-#    result[, "Min."] <- apply(marks_matrix, 2, function(col) min(col, na.rm = TRUE))
     result[, "1st Qu."] <- apply(marks_matrix, 2, function(col)
         quantile(col, 0.25, na.rm = TRUE))
     result[, "Median"] <- apply(marks_matrix, 2, function(col)
@@ -417,7 +414,6 @@ meddiff_fit <- function(m) {
     X <- cbind(model.matrix(~ rows - 1), 0) - cbind(0, model.matrix(~ cols - 1))
     colnames(X) <- colnames(m)
     rownames(X) <- paste0(colnames(m)[rows], "-", colnames(m)[cols])
-    #result <- lm.wfit(X, diffs, weights)
     result <- lm(diffs ~ X - 1, weights = weights)
     result$coefficients[is.na(result$coefficients)] <- 0
     return(result)
