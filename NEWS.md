@@ -1,3 +1,7 @@
+# norman 1.0.8 (2020-04-29)
+
+* Small improvements to the .Rmd template (skeleton), to aid clarity
+
 # norman 1.0.7 (2020-04-29)
 
 * Report pages for individual modules are now landscape-oriented

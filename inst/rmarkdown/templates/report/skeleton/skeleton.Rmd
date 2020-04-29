@@ -5,33 +5,42 @@
 ## https://davidfirth.github.io/norman/articles/instructions.html
 ## 
 title: ????
+## E.g., "Report for Second-year Scaling Committee" -- best to be as specific as possible
 author: 
 - Department of Statistics
 - \small (prepared by ????)
-date: \rm Report written `r format(Sys.time(), "%Y-%m-%d at %H:%M")`, using \emph{norman} version `r packageDescription("norman")$Version`
+## E.g., "prepared by Lynne Bayley and David Kinmond"
 output:
   pdf_document:
     toc: yes
+---
+
+# REMARKS
+
+????  
+E.g., "There are no remarks to make" or "Marks for ST202 are still awaited", etc.
+
+<!-- Write anything that needs to be noted about this report, its status, etc. -->
+
+
+
+<!-- ------------------------------------------------------------------------- -->
+<!--                DO NOT EDIT ANYTHING BELOW THIS LINE                       -->
+<!-- ------------------------------------------------------------------------- -->
+
+---
+classoption: a4paper,11pt
+date: \rm Report written `r format(Sys.time(), "%Y-%m-%d at %H:%M")`, using \emph{norman} version `r packageDescription("norman")$Version`
+urlcolor: blue
+toccolor: blue
 header-includes: 
 - \usepackage{txfonts}
 - \usepackage{pdflscape}
 - \newcommand{\blandscape}{\begin{landscape}}
 - \newcommand{\elandscape}{\end{landscape}}
 - \usepackage{fancyhdr}
-urlcolor: blue
-toccolor: blue
-classoption: a4paper,11pt
 ---
 
-# REMARKS
-
-<!-- Write anything that needs to be noted about this report, its status, etc. -->
-
-???? 
-
-
-
-<!-- DO NOT EDIT ANYTHING BELOW THIS LINE                                      -->
 
 ```{r get_working_directory, echo = FALSE}
 working_directory <- getwd()
