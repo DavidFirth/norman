@@ -168,7 +168,7 @@ For each considered module, tabulated here are all _other_ modules that were tak
 1. The **median difference** between students' scores for the two modules (rounded to integer where needed).  Positive values indicate a comparator module that was found to be harder than the module under consideration; and the opposite for negative values.
 2. The **count** of students who took both modules. (Comparator modules where the count is smaller than 5 are excluded.)
 
-\small
+\footnotesize
 
 ```{r list_all_median_differences}
 norman::list_all_median_differences(mdd)
@@ -176,14 +176,25 @@ norman::list_all_median_differences(mdd)
 
 \normalsize
 
-\newpage
-
-
-# INDIVIDUAL MODULE SUMMARIES
-
 ```{r make_overall_medians, include = FALSE}
-student_overall_median <- apply(marks_matrix, 1, function(row) median(na.omit(row)))
+student_overall_median <- apply(marks_matrix, 1,
+                                function(row) median(na.omit(row)))
 ```
+
+\fancypagestyle{mylandscape}{
+\fancyhf{} %Clears the header/footer
+\fancyfoot{% Footer
+\makebox[\textwidth][r]{% Right
+  \rlap{\hspace{.75cm}% Push out of margin by \footskip
+    \smash{% Remove vertical height
+      \raisebox{4.87in}{% Raise vertically
+        \rotatebox{90}{\thepage}}}}}}% Rotate counter-clockwise
+\renewcommand{\headrulewidth}{0pt}% No header rule
+\renewcommand{\footrulewidth}{0pt}% No footer rule
+}
+
+\newgeometry{top=2cm, bottom = 2cm}
+
 
 ```{r make-module-pages, include = FALSE}
 module_pages <- norman::make_module_pages(working_directory,

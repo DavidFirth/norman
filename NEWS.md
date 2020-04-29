@@ -1,3 +1,7 @@
+# norman 1.0.7 (2020-04-29)
+
+* Report pages for individual modules are now landscape-oriented
+
 # norman 1.0.6 (2020-04-28)
 
 * Inserted `stringsAsFactors = TRUE` in all calls to `read.csv()` and `data.frame()`, as a quick fix to ensure compatibility with new R major release 4.0.0.

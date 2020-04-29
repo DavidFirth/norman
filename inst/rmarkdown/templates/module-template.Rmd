@@ -1,33 +1,49 @@
+\blandscape
+
+\thispagestyle{mylandscape}
+
 
 ## module-code module-name
+
+\vspace{-0.2in}
+
+```{r scatter-module-code, fig.width=5, fig.height=7, out.height='5in', fig.align='right'}
+norman::scatter("module-code", marks_matrix, student_overall_median)
+```
+\vspace{-4.8in}
 
 **Module effect** (as described above): 
 **`r norman::print_module_effect("module-code", mdf)` marks**
 
-\small
+\bigskip\small
 
 ```{r stemplot-module-code}
 stemplot <- norman::stemleaf("module-code", module_marks)
 cat(stemplot, sep = "\n")
 ```
 
+\bigskip
 \normalsize 
+\setlength{\LTleft}{1em}
 
-```{r scatter-module-code, out.width = '100%', fig.align='center'}
-norman::scatter("module-code", marks_matrix, student_overall_median)
-```
+**Seven-number summary:**
 
 ```{r sevennum-module-code}
 knitr::kable(summaries["module-code",,drop = FALSE])
 ```
 
-\vspace{-10pt}
+**Percentage of students in each degree-class range:**
 
 ```{r classes-module-code}
 knitr::kable(classes["module-code (%)",,drop = FALSE])
 ```
 
-\newpage
 
+
+
+
+\vfill
+\elandscape
+\newpage
 
 

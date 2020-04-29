@@ -1,4 +1,9 @@
 ---
+## To use this template, replace ???? (in 3 places below) with appropriate
+## text, then save the edited file in the folder that contains your "marks"
+## folder --- as described in the instructions at 
+## https://davidfirth.github.io/norman/articles/instructions.html
+## 
 title: ????
 author: 
 - Department of Statistics
@@ -8,19 +13,21 @@ output:
   pdf_document:
     toc: yes
 header-includes: 
-- \usepackage{color}
-- \usepackage{hyperref}
 - \usepackage{txfonts}
+- \usepackage{pdflscape}
+- \newcommand{\blandscape}{\begin{landscape}}
+- \newcommand{\elandscape}{\end{landscape}}
+- \usepackage{fancyhdr}
 urlcolor: blue
 toccolor: blue
-classoption: a4paper
+classoption: a4paper,11pt
 ---
 
 # REMARKS
 
 <!-- Write anything that needs to be noted about this report, its status, etc. -->
 
-????  None, for now.
+???? 
 
 
 

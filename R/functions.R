@@ -180,10 +180,10 @@ scatter  <- function(module_code, marks_matrix, student_overall_median) {
         ST952 <- !is.na(marks_matrix[, "ST952"])
         ST415 <- !is.na(marks_matrix[, "ST415"])
         ST404 <- !is.na(marks_matrix[, "ST404"])
-        group <- rep("BSc and other", nrow(marks_matrix))
+        group <- rep("BSc & other", nrow(marks_matrix))
         group <- ifelse(ST903 & ST952, "MSc", group)
-        group <- ifelse(ST415, "M degree 4th year", group)
-        group <- ifelse(ST404, "M degree 3rd year", group)
+        group <- ifelse(ST415, "M 4th yr", group)
+        group <- ifelse(ST404, "M 3rd yr", group)
         group <- as.factor(group)
         cbPalette <- c("#56B4E9", "#009E73", "#E0D442", "#CC79A7")
         ##  For colourblind-friendly colours
@@ -210,7 +210,8 @@ scatter  <- function(module_code, marks_matrix, student_overall_median) {
                            breaks = c(0, 40, 50, 60, 70, 100)) +
         theme(panel.grid.minor = element_line(colour="white", size=0.5)) +
         scale_x_continuous(minor_breaks = c(0, 40, 50, 60, 70, 100),
-                           breaks = c(0, 40, 50, 60, 70, 100))
+                           breaks = c(0, 40, 50, 60, 70, 100)) +
+        theme(legend.position="bottom")
     thegraph
 }
 
