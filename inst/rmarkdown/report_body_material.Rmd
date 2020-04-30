@@ -181,20 +181,32 @@ student_overall_median <- apply(marks_matrix, 1,
                                 function(row) median(na.omit(row)))
 ```
 
+\bigskip
+
+# MODULES
+
+(first module is on next page)
+
+\newpage
+
+<!-- Now do the module-specific pages, in landscape orientation -->
+
+\newgeometry{top=1.5cm, bottom = 1.5cm}
+
 \fancypagestyle{mylandscape}{
 \fancyhf{} %Clears the header/footer
 \fancyfoot{% Footer
 \makebox[\textwidth][r]{% Right
-  \rlap{\hspace{.75cm}% Push out of margin by \footskip
+  \rlap{\hspace{0.75cm}% Push out of margin by \footskip
     \smash{% Remove vertical height
       \raisebox{4.87in}{% Raise vertically
-        \rotatebox{90}{\thepage}}}}}}% Rotate counter-clockwise
+        \rotatebox{90}{\qquad\qquad\thepage}}}}}}% Rotate counter-clockwise
 \renewcommand{\headrulewidth}{0pt}% No header rule
 \renewcommand{\footrulewidth}{0pt}% No footer rule
 }
 
-\newgeometry{top=2cm, bottom = 2cm}
-
+\subsectionfont{\fontsize{14}{17}\selectfont}
+  
 
 ```{r make-module-pages, include = FALSE}
 module_pages <- norman::make_module_pages(working_directory,

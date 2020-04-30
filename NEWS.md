@@ -1,3 +1,7 @@
+# norman 1.0.9 (2020-04-30)
+
+* Tweaks to the format of the landscape pages for individual modules
+
 # norman 1.0.8 (2020-04-29)
 
 * Small improvements to the .Rmd template (skeleton), to aid clarity

@@ -10,7 +10,8 @@
 ```{r scatter-module-code, fig.width=5, fig.height=7, out.height='5in', fig.align='right'}
 norman::scatter("module-code", marks_matrix, student_overall_median)
 ```
-\vspace{-4.8in}
+\vspace{-4.7in}
+\large
 
 **Module effect** (as described above): 
 **`r norman::print_module_effect("module-code", mdf)` marks**
@@ -23,7 +24,7 @@ cat(stemplot, sep = "\n")
 ```
 
 \bigskip
-\normalsize 
+\large
 \setlength{\LTleft}{1em}
 
 **Seven-number summary:**
