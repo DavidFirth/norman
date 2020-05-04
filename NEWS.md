@@ -1,3 +1,7 @@
+# norman 1.1.0 (2020-05-04)
+
+* Fixed a bug in meddiff_fit (PR #1, thanks to Ella Kaye)
+
 # norman 1.0.9 (2020-04-30)
 
 * Tweaks to the format of the landscape pages for individual modules

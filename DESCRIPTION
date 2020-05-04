@@ -1,6 +1,6 @@
 Package: norman
 Title: Package for Warwick Statistics module marks analysis 
-Version: 1.0.9
+Version: 1.1.0
 Authors@R: person("David", "Firth", email = "d.firth@warwick.ac.uk", role = c("aut", "cre"))
 Author: David Firth [aut, cre]
 Maintainer: David Firth <d.firth@warwick.ac.uk>
