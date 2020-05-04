@@ -7,7 +7,7 @@
 meddiff_fit(m)
 }
 \arguments{
-\item{m}{A numeric matrix of mdeian differences as computed by \code{meddiff}}
+\item{m}{A numeric matrix of median differences as computed by \code{meddiff}}
 }
 \value{
 A \code{lm} model object
