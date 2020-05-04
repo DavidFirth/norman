@@ -416,7 +416,7 @@ meddiff_fit <- function(m) {
     cols <- factor(col(m)[upper])
     X <- cbind(model.matrix(~ rows - 1), 0) - cbind(0, model.matrix(~ cols - 1))
     colnames(X) <- colnames(m)
-    rownames(X) <- paste0(colnames(m)[rows], "-", colnames(m)[cols])
+    rownames(X) <- paste0(colnames(m)[row(m)[upper]], "-", colnames(m)[col(m)[upper]])
     result <- lm(diffs ~ X - 1, weights = weights)
     result$coefficients[is.na(result$coefficients)] <- 0
     return(result)
