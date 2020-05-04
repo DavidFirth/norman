@@ -399,7 +399,7 @@ list_all_median_differences <- function(mdd) {
 #' names(the_fit) <- gsub("^X", "", names(the_fit))
 #' the_fit
 #'
-#' @param m A numeric matrix of mdeian differences as computed by \code{meddiff}
+#' @param m A numeric matrix of median differences as computed by \code{meddiff}
 #' @return A \code{lm} model object
 #'
 #' @importFrom stats model.matrix
