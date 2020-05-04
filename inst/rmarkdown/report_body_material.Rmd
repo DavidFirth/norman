@@ -135,7 +135,7 @@ These module effects explain `r paste0(round(100 * rsq, 0), "%")` of the variati
 
 If the variation seen between modules is just natural (roughly normally distributed) variation, then the points in this graph should not deviate far from a straight line.
 
-Points near the ends of the graph that are far above or far below the line represent modules that deserve scrituny.
+Points near the ends of the graph that are far above or far below the line represent modules that deserve scrutiny.
 
 ```{r}
 effects <- mdf$Effect
