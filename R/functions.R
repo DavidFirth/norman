@@ -284,7 +284,7 @@ raw_mark_classes <-  function(marks_matrix, dp = 0){
 #' @examples
 #' #
 #' # Toy example from
-#' # https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table
+#' # https://davidfirth.github.io/blog/2019/04/26/robust-measurement-from-a-2-way-table/
 #' #
 #' x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
 #'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
@@ -321,7 +321,7 @@ meddiff <- function(xmat, threshold = 5) {
 #' @examples
 #' #
 #' # Toy example from
-#' # https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table
+#' # https://davidfirth.github.io/blog/2019/04/26/robust-measurement-from-a-2-way-table/
 #' #
 #' x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
 #'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
@@ -363,7 +363,7 @@ meddiff_for_display <- function(xmat, threshold = 5) {
 #' @examples
 #' #
 #' # Toy example from
-#' # https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table
+#' # https://davidfirth.github.io/blog/2019/04/26/robust-measurement-from-a-2-way-table/
 #' #
 #' x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
 #'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
@@ -388,7 +388,7 @@ list_all_median_differences <- function(mdd) {
 #' @examples
 #' #
 #' # Toy example from
-#' # https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table
+#' # https://davidfirth.github.io/blog/2019/04/26/robust-measurement-from-a-2-way-table/
 #' #
 #' x <- structure(c(NA, NA, 10, NA, NA, 20, NA, NA, 30, 45, 55, NA, 60, 60, 50),
 #'   .Dim = c(3L, 5L), .Dimnames = structure(list(student = c("i", "j", "k"),
