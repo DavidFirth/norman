@@ -100,7 +100,7 @@ Module effects are measured via a two-stage analysis:
 1. For every possible pair of modules, calculate the **median of the differences in marks** (across the students who took both modules).
 2. Find, by weighted least squares, the **vector of module effects that best fits** those median differences. Median differences based upon fewer than 5 observed differences are excluded from this calculation; otherwise they each are assigned weight equal to the number of observed differences underlying the computed median difference.
 
-This analysis is similar to Tukey's _median polish_ analysis, but is both more transparent and more robust for the present purpose.  (Blog post at https://statgeek.net/2019/04/26/robust-measurement-from-a-2-way-table/ amplifies this a little.)
+This analysis is similar to Tukey's _median polish_ analysis, but is both more transparent and more robust for the present purpose.  (Blog post at https://davidfirth.github.io/blog/2019/04/26/robust-measurement-from-a-2-way-table/ amplifies this a little.)
 
 For completeness, in case needed, the median differences from stage 1 are reported in full, in the next sub-section.
 
